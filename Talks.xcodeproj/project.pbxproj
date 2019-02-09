@@ -13,6 +13,7 @@
 		92C60DAE220E902C00894F60 /* Talks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DAC220E902C00894F60 /* Talks.xcdatamodeld */; };
 		92C60DB0220E902E00894F60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C60DAF220E902E00894F60 /* Assets.xcassets */; };
 		92C60DB3220E902E00894F60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C60DB1220E902E00894F60 /* LaunchScreen.storyboard */; };
+		92C60DBC220F32E700894F60 /* LifeCirlce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DBB220F32E700894F60 /* LifeCirlce.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		92C60DAF220E902E00894F60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92C60DB2220E902E00894F60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		92C60DB4220E902E00894F60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92C60DBB220F32E700894F60 /* LifeCirlce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCirlce.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				92C60DA5220E902C00894F60 /* AppDelegate.swift */,
+				92C60DBA220F32A300894F60 /* Helpers */,
 				92C60DA7220E902C00894F60 /* ViewController.swift */,
 				92C60DA9220E902C00894F60 /* Main.storyboard */,
 				92C60DAF220E902E00894F60 /* Assets.xcassets */,
@@ -65,6 +68,14 @@
 				92C60DAC220E902C00894F60 /* Talks.xcdatamodeld */,
 			);
 			path = Talks;
+			sourceTree = "<group>";
+		};
+		92C60DBA220F32A300894F60 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				92C60DBB220F32E700894F60 /* LifeCirlce.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92C60DAE220E902C00894F60 /* Talks.xcdatamodeld in Sources */,
+				92C60DBC220F32E700894F60 /* LifeCirlce.swift in Sources */,
 				92C60DA8220E902C00894F60 /* ViewController.swift in Sources */,
 				92C60DA6220E902C00894F60 /* AppDelegate.swift in Sources */,
 			);
@@ -289,6 +301,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YK7M3B2TGF;
 				INFOPLIST_FILE = Talks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,7 +309,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = denis.garifyanov.com.Talks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -307,6 +320,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YK7M3B2TGF;
 				INFOPLIST_FILE = Talks/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -314,7 +328,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = denis.garifyanov.com.Talks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
