@@ -25,10 +25,10 @@ class LifeCircle {
                   "viewDidDisappear": "Disappeared"]
     func printStep(byFunction function: String, isApplication: Bool) {
         #if DEBUG
-        let tryToCathcStep = self.states[function]
+        let tryToCatchStep = self.states[function]
         let preFix = isApplication ? "Application " : "The View "
-        guard let step = tryToCathcStep else {
-            print ("Unknown state")
+        guard let step = tryToCatchStep else {
+            print ("Unknown state by: \(function)")
             return
         }
         if let lastStage = lastStage {
