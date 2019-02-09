@@ -24,6 +24,7 @@ class LifeCircle {
                   "viewWillDisappear": "Disappearing",
                   "viewDidDisappear": "Disappeared"]
     func printStep(byFunction function: String, isApplication: Bool) {
+        #if DEBUG
         let tryToCathcStep = self.states[function]
         let preFix = isApplication ? "Application " : "The View "
         guard let step = tryToCathcStep else {
@@ -36,5 +37,6 @@ class LifeCircle {
             print ("\(preFix)begin work from \(step): \(function)")
         }
         self.lastStage = step
+        #endif
     }
 }
