@@ -8,8 +8,13 @@
 
 import Foundation
 
-class LifeCircle {
+enum Threads: String {
+    case application = "Application"
+    case view = "The View"
+}
+class ThreadLogger {
     private var lastStage: String?
+    private let typeOfThread: Threads
     private let states = ["application(_:didFinishLaunchingWithOptions:)":"InAcitve",
                   "applicationDidBecomeActive": "Active",
                   "applicationWillResignActive": "InActive",
@@ -23,18 +28,21 @@ class LifeCircle {
                   "viewDidAppear": "Appeared",
                   "viewWillDisappear": "Disappearing",
                   "viewDidDisappear": "Disappeared"]
-    func printStep(byFunction function: String, isApplication: Bool) {
+    init(typeOfThread: Threads) {
+        self.typeOfThread = typeOfThread
+    }
+    
+    func printStep(byFunction function: String = #function) {
         #if DEBUG
-        let tryToCatchStep = self.states[function]
-        let preFix = isApplication ? "Application " : "The View "
-        guard let step = tryToCatchStep else {
+        let method = self.states[function]
+        guard let step = method else {
             print ("Unknown state by: \(function)")
             return
         }
         if let lastStage = lastStage {
-            print ("\(preFix)moved from \(lastStage) to \(step): \(function)")
+            print ("\(self.typeOfThread.rawValue) moved from \(lastStage) to \(step): \(function)")
         } else {
-            print ("\(preFix)begin work from \(step): \(function)")
+            print ("\(self.typeOfThread.rawValue) begin work from \(step): \(function)")
         }
         self.lastStage = step
         #endif

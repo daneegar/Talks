@@ -9,38 +9,38 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let lifeShower = LifeCircle()
+    let threadLogger = ThreadLogger(typeOfThread: .view)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.lifeShower.printStep(byFunction: #function, isApplication: false)
+        self.threadLogger.printStep()
         
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.lifeShower.printStep(byFunction: #function, isApplication: false)
+        self.threadLogger.printStep()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.lifeShower.printStep(byFunction: #function, isApplication: false)
+        self.threadLogger.printStep()
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        self.lifeShower.printStep(byFunction: #function, isApplication: false)
+        self.threadLogger.printStep()
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.lifeShower.printStep(byFunction: #function, isApplication: false)
+        self.threadLogger.printStep()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.lifeShower.printStep(byFunction: #function, isApplication: false)
+        self.threadLogger.printStep()
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.lifeShower.printStep(byFunction: #function, isApplication: false)
+        self.threadLogger.printStep()
     }
     
 

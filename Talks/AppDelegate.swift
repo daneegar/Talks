@@ -13,27 +13,27 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let lifeShower = LifeCircle()
+    let threadLogger = ThreadLogger(typeOfThread: .application)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        self.lifeShower.printStep(byFunction: #function, isApplication: true)
+        self.self.threadLogger.printStep()
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        self.lifeShower.printStep(byFunction: #function, isApplication: true)
+        self.self.threadLogger.printStep()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        self.lifeShower.printStep(byFunction: #function, isApplication: true)
+        self.self.threadLogger.printStep()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        self.lifeShower.printStep(byFunction: #function, isApplication: true)
+        self.self.threadLogger.printStep()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        self.lifeShower.printStep(byFunction: #function, isApplication: true)
+        self.self.threadLogger.printStep()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
