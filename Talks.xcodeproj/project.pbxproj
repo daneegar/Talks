@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		92C60DA6220E902C00894F60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DA5220E902C00894F60 /* AppDelegate.swift */; };
-		92C60DA8220E902C00894F60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DA7220E902C00894F60 /* ViewController.swift */; };
+		92C60DA8220E902C00894F60 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DA7220E902C00894F60 /* ProfileViewController.swift */; };
 		92C60DAB220E902C00894F60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C60DA9220E902C00894F60 /* Main.storyboard */; };
 		92C60DAE220E902C00894F60 /* Talks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DAC220E902C00894F60 /* Talks.xcdatamodeld */; };
 		92C60DB0220E902E00894F60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92C60DAF220E902E00894F60 /* Assets.xcassets */; };
@@ -19,7 +19,7 @@
 /* Begin PBXFileReference section */
 		92C60DA2220E902C00894F60 /* Talks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Talks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C60DA5220E902C00894F60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		92C60DA7220E902C00894F60 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		92C60DA7220E902C00894F60 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		92C60DAA220E902C00894F60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92C60DAD220E902C00894F60 /* Talks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Talks.xcdatamodel; sourceTree = "<group>"; };
 		92C60DAF220E902E00894F60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 			children = (
 				92C60DA5220E902C00894F60 /* AppDelegate.swift */,
 				92C60DBA220F32A300894F60 /* Helpers */,
-				92C60DA7220E902C00894F60 /* ViewController.swift */,
+				92C60DA7220E902C00894F60 /* ProfileViewController.swift */,
 				92C60DA9220E902C00894F60 /* Main.storyboard */,
 				92C60DAF220E902E00894F60 /* Assets.xcassets */,
 				92C60DB1220E902E00894F60 /* LaunchScreen.storyboard */,
@@ -151,7 +151,7 @@
 			files = (
 				92C60DAE220E902C00894F60 /* Talks.xcdatamodeld in Sources */,
 				92C60DBC220F32E700894F60 /* ThreadLogger.swift in Sources */,
-				92C60DA8220E902C00894F60 /* ViewController.swift in Sources */,
+				92C60DA8220E902C00894F60 /* ProfileViewController.swift in Sources */,
 				92C60DA6220E902C00894F60 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
