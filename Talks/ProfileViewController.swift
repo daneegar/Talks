@@ -7,16 +7,22 @@
 //
 
 import UIKit
-
-class ProfileViewController: UIViewController {
+protocol TakeImageDelegate {
+    func pickTaken(image takenImage: UIImage)
+}
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TakeImageDelegate {
     let threadLogger = ThreadLogger(typeOfThread: .view)
+    let cameraHandler = CameraHandler()
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var iconAddPhoto: UIView!
     
     
+    
+    
     @IBAction func addPhoto(_ sender: Any) {
         print("Выбери изображение профиля")
+        self.cameraHandler.showActionSheet(vc: self)
     }
 
     
@@ -76,7 +82,10 @@ class ProfileViewController: UIViewController {
         self.profilePhoto.layer.cornerRadius = 40
         self.iconAddPhoto.layer.cornerRadius = 40
     }
+    //MARK: - image pinner
+    func pickTaken(image takenImage: UIImage) {
+        self.profilePhoto.image = takenImage
+    }
     
-
 }
 

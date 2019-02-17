@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92334CAC221964DF00FD0820 /* CameraHandler.swift */; };
 		92C60DA6220E902C00894F60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DA5220E902C00894F60 /* AppDelegate.swift */; };
 		92C60DA8220E902C00894F60 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DA7220E902C00894F60 /* ProfileViewController.swift */; };
 		92C60DAB220E902C00894F60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C60DA9220E902C00894F60 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		92334CAC221964DF00FD0820 /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHandler.swift; sourceTree = "<group>"; };
 		92C60DA2220E902C00894F60 /* Talks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Talks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C60DA5220E902C00894F60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92C60DA7220E902C00894F60 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				92C60DBB220F32E700894F60 /* ThreadLogger.swift */,
+				92334CAC221964DF00FD0820 /* CameraHandler.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92C60DAE220E902C00894F60 /* Talks.xcdatamodeld in Sources */,
+				92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */,
 				92C60DBC220F32E700894F60 /* ThreadLogger.swift in Sources */,
 				92C60DA8220E902C00894F60 /* ProfileViewController.swift in Sources */,
 				92C60DA6220E902C00894F60 /* AppDelegate.swift in Sources */,
