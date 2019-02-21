@@ -31,12 +31,12 @@ class ChatCell: UITableViewCell, ConversationCellConfiguration {
 
         // Configure the view for the selected state
     }
-    func configProperies(withNameOfOppnent opponentName: String?, withLastText text: String?, byLastDate date: Date?, oponentIsOnline onlineStatus: Bool,  withUnReadedMesg unReadedStatus: Bool) {
-        self.name = opponentName
-        self.message = text
-        self.date = date
-        self.online = onlineStatus
-        self.hasUnreadMessages = unReadedStatus
+    func configProperies(withChatModel instance: Chat) {
+        self.name = instance.name
+        self.message = instance.message
+        self.date = instance.date
+        self.online = instance.online
+        self.hasUnreadMessages = instance.hasUnreadMessages
         self.configCellView()
     }
     
