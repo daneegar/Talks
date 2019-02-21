@@ -174,7 +174,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="ciK-qw-2Xu" kind="show" id="gYp-7R-A72"/>
+                        <outlet property="tableViewOfChats" destination="Gkw-wu-lkR" id="5KN-7R-3Ke"/>
+                        <segue destination="ciK-qw-2Xu" kind="show" identifier="toChat" id="gYp-7R-A72"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78O-g9-ax8" userLabel="First Responder" sceneMemberID="firstResponder"/>

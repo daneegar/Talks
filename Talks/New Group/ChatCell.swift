@@ -41,7 +41,7 @@ class ChatCell: UITableViewCell, ConversationCellConfiguration {
     }
     
     func configCellView() {
-        self.nameLabel.text = self.name
+        self.nameLabel.text = name
         if let message = self.message {
             self.lastText.text = message
         } else {
