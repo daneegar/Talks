@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92334CAC221964DF00FD0820 /* CameraHandler.swift */; };
+		9295C369221DB75D00F12F4C /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295C368221DB75D00F12F4C /* ConversationListViewController.swift */; };
+		9295C36C221F0A7400F12F4C /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295C36A221F0A7400F12F4C /* ChatCell.swift */; };
+		9295C36D221F0A7400F12F4C /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9295C36B221F0A7400F12F4C /* ChatCell.xib */; };
+		9295C372221F0AC800F12F4C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295C371221F0AC800F12F4C /* Protocols.swift */; };
 		92C60DA6220E902C00894F60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DA5220E902C00894F60 /* AppDelegate.swift */; };
 		92C60DA8220E902C00894F60 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C60DA7220E902C00894F60 /* ProfileViewController.swift */; };
 		92C60DAB220E902C00894F60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C60DA9220E902C00894F60 /* Main.storyboard */; };
@@ -19,6 +23,10 @@
 
 /* Begin PBXFileReference section */
 		92334CAC221964DF00FD0820 /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHandler.swift; sourceTree = "<group>"; };
+		9295C368221DB75D00F12F4C /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
+		9295C36A221F0A7400F12F4C /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		9295C36B221F0A7400F12F4C /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
+		9295C371221F0AC800F12F4C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		92C60DA2220E902C00894F60 /* Talks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Talks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92C60DA5220E902C00894F60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92C60DA7220E902C00894F60 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +49,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9295C36E221F0A7D00F12F4C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9295C36A221F0A7400F12F4C /* ChatCell.swift */,
+				9295C36B221F0A7400F12F4C /* ChatCell.xib */,
+			);
+			name = Views;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		9295C370221F0AB700F12F4C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9295C371221F0AC800F12F4C /* Protocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		92C60D99220E902C00894F60 = {
 			isa = PBXGroup;
 			children = (
@@ -60,10 +86,13 @@
 		92C60DA4220E902C00894F60 /* Talks */ = {
 			isa = PBXGroup;
 			children = (
+				9295C370221F0AB700F12F4C /* Protocols */,
 				92C60DA5220E902C00894F60 /* AppDelegate.swift */,
 				92C60DBA220F32A300894F60 /* Helpers */,
 				92C60DA7220E902C00894F60 /* ProfileViewController.swift */,
 				92C60DA9220E902C00894F60 /* Main.storyboard */,
+				9295C368221DB75D00F12F4C /* ConversationListViewController.swift */,
+				9295C36E221F0A7D00F12F4C /* Views */,
 				92C60DAF220E902E00894F60 /* Assets.xcassets */,
 				92C60DB1220E902E00894F60 /* LaunchScreen.storyboard */,
 				92C60DB4220E902E00894F60 /* Info.plist */,
@@ -140,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92C60DB3220E902E00894F60 /* LaunchScreen.storyboard in Resources */,
+				9295C36D221F0A7400F12F4C /* ChatCell.xib in Resources */,
 				92C60DB0220E902E00894F60 /* Assets.xcassets in Resources */,
 				92C60DAB220E902C00894F60 /* Main.storyboard in Resources */,
 			);
@@ -153,10 +183,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				92C60DAE220E902C00894F60 /* Talks.xcdatamodeld in Sources */,
+				9295C369221DB75D00F12F4C /* ConversationListViewController.swift in Sources */,
 				92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */,
 				92C60DBC220F32E700894F60 /* ThreadLogger.swift in Sources */,
+				9295C36C221F0A7400F12F4C /* ChatCell.swift in Sources */,
 				92C60DA8220E902C00894F60 /* ProfileViewController.swift in Sources */,
 				92C60DA6220E902C00894F60 /* AppDelegate.swift in Sources */,
+				9295C372221F0AC800F12F4C /* Protocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
