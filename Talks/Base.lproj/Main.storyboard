@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Conversation View Controller-->
         <scene sceneID="EKU-TG-7WU">
             <objects>
-                <viewController id="ciK-qw-2Xu" sceneMemberID="viewController">
+                <viewController id="ciK-qw-2Xu" customClass="ConversationViewController" customModule="Talks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8G4-Uy-LBU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,6 +21,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bMQ-8y-ECg">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ciK-qw-2Xu" id="Bbd-kQ-EgT"/>
+                                    <outlet property="delegate" destination="ciK-qw-2Xu" id="Qpe-5M-AdP"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,6 +36,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Jgw-C7-siy"/>
                     </view>
+                    <connections>
+                        <outlet property="converstaionTableView" destination="bMQ-8y-ECg" id="ThH-RR-dmT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fpl-Ik-JDN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,7 +92,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Гарифьянов Денис" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpW-p9-Yfa">
                                 <rect key="frame" x="16" y="317" width="288" height="35"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
-                                <color key="textColor" red="0.89813512563705444" green="0.87529012123086614" blue="0.52623407232386565" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uMz-jK-POC">

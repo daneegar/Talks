@@ -43,16 +43,10 @@ class ConversationListViewController: UIViewController {
     //MARK: - lets test our TableView with Cells
     private func richList() {
         for _ in 0...31 {
-            self.listOfChats.append(Chat(name: randomString(length: 10), message: randomString(length: 10), date: Date(), onlineStatus: randomBool(), hasUnreadMessages: randomBool()))
+            self.listOfChats.append(Chat(name: RandomData.randomString(length: 10), message: RandomData.randomString(length: 10), date: Date(), onlineStatus: RandomData.randomBool(), hasUnreadMessages: RandomData.randomBool()))
         }
     }
-    func randomString(length: Int) -> String {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        return String((0...length-1).map{ _ in letters.randomElement()! })
-    }
-    func randomBool() -> Bool {
-        return arc4random_uniform(2) == 0
-    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toChat" {
             //print(segue.identifier)
