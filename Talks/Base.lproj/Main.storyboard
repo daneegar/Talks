@@ -174,7 +174,7 @@
                         <viewLayoutGuide key="safeArea" id="dbM-mb-UV7"/>
                     </view>
                     <navigationItem key="navigationItem" id="HkD-hG-0LZ">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="w9H-vu-i6P">
+                        <barButtonItem key="rightBarButtonItem" image="user_male" id="w9H-vu-i6P">
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" id="d1L-nh-e3L"/>
                             </connections>
@@ -193,5 +193,6 @@
     <resources>
         <image name="placeholder-user" width="600" height="600"/>
         <image name="slr-camera-2-xxl" width="256" height="256"/>
+        <image name="user_male" width="30" height="30"/>
     </resources>
 </document>

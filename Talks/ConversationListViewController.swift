@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class ConversationListViewController: UIViewController {
+    let logger = ThreadLogger(typeOfThread: .view)
     
     @IBOutlet weak var tableViewOfChats: UITableView!
     var listOfChats: [Chat] = []
@@ -42,8 +43,9 @@ class ConversationListViewController: UIViewController {
     }
     //MARK: - lets test our TableView with Cells
     private func richList() {
+        print("Тестовое наполнение списка чатов, все заполняется случайным образом, случайная дата выбирается в диапазоне с десяти суток назад по настоящий момент")
         for _ in 0...31 {
-            self.listOfChats.append(Chat(name: RandomData.randomString(length: 10), message: RandomData.randomString(length: 10), date: Date(), onlineStatus: RandomData.randomBool(), hasUnreadMessages: RandomData.randomBool()))
+            self.listOfChats.append(Chat(name: RandomData.randomString(length: 10), message: RandomData.randomString(length: 10), date: RandomData.generateRandomDate(daysBack: 10), onlineStatus: RandomData.randomBool(), hasUnreadMessages: RandomData.randomBool()))
         }
     }
 

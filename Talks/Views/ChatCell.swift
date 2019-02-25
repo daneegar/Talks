@@ -55,7 +55,7 @@ class ChatCell: UITableViewCell, ConversationCellConfiguration {
         
         let datesHandler = DatesHandler()
         
-        self.lastDateLabel.text = datesHandler.stringWithChoisedFromatter(withDate: self.date!, howManyDatesIsNotCorrent: 0)
+        self.lastDateLabel.text = datesHandler.stringWithChoisedFromatter(withDate: self.date!, howManyDaysMeansIsRecent: 1)
         self.backgroundColor = self.online ? UIColor(rgb: 0xDBE5C6, alpha: 0.3) : UIColor.white
     }
     

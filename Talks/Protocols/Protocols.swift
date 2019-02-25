@@ -17,5 +17,5 @@ protocol ConversationCellConfiguration: class {
 }
 
 protocol MessageCellConfiguration: class {
-     var text : String? {get set}
+    var text : String? {get set}
 }

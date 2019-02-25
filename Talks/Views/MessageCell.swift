@@ -9,10 +9,11 @@
 import UIKit
 
 
-class MessageCell: UITableViewCell {
+
+
+
+class MessageCell: UITableViewCell{
     
-    var isIncomingMessga: MessageType?
-     //var text: String?
     @IBOutlet weak var labelOfIncomingMessage: UILabel!
     @IBOutlet weak var labelOfOutGoingMessage: UILabel!
     

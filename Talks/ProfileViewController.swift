@@ -30,9 +30,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     //MARK: - переопределенный конструктор
     required init?(coder aDecoder: NSCoder) {
         print(self.buttonEdit?.frame ?? "There is no button yet")
-//        TODO: - объяснить в чем проблема:
-//        Если обращаться к свойству экземпляра класса в конструкторе, то нужно понимать когда это конкретное свойство инициализируется.
-//        в случае с атулетами, они по умолчанию weak, эти сслыки удерживаются иерархией вью, видимо, когда класс вью инициализируется он еще не встроен в иерархию, отсюда и отсутсвие ссылки на объект.
         super.init(coder: aDecoder)
         
     }
@@ -44,7 +41,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         print("The button frame is: \(self.buttonEdit.frame)")
         self.setupButton()
         self.setupProfilePhotoImageAndAddButton()
+        let gestureRecognaizer = UISwipeGestureRecognizer(target: self, action: #selector (handleGesture))
+        gestureRecognaizer.direction = .down
+        self.view.addGestureRecognizer(gestureRecognaizer)
     }
+    @objc func handleGesture() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.threadLogger.printStep()
@@ -53,8 +57,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         super.viewDidAppear(animated)
         self.threadLogger.printStep()
         print("The button frame is: \(self.buttonEdit.frame)")
-//                TODO: - объяснить почему значения поменялись:
-//            - так как сториборд мы верстаем в превью iPhone SE то в первом приближении устанавливаются значения Frame исходя из того как и где верстали, при включении в иерархию вьюшек применяются консстрейны и исходя из них перерасчитываются параметры frame свойста кнопки.
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
