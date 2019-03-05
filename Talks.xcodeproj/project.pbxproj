@@ -28,6 +28,8 @@
 		92DDDA502222BFC300491AE5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDA4F2222BFC300491AE5 /* Message.swift */; };
 		92DDDA522222C8F400491AE5 /* OutGoingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DDDA512222C8F400491AE5 /* OutGoingMessageCell.xib */; };
 		92DDDA542222D0C800491AE5 /* DatesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDA532222D0C800491AE5 /* DatesHandler.swift */; };
+		92DDDA58222C488900491AE5 /* ThemesViewContoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDA57222C488900491AE5 /* ThemesViewContoller.m */; };
+		92DDDA5A222C491A00491AE5 /* Themes.h in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDA59222C491A00491AE5 /* Themes.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,11 @@
 		92DDDA4F2222BFC300491AE5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		92DDDA512222C8F400491AE5 /* OutGoingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutGoingMessageCell.xib; sourceTree = "<group>"; };
 		92DDDA532222D0C800491AE5 /* DatesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesHandler.swift; sourceTree = "<group>"; };
+		92DDDA55222C488900491AE5 /* Talks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Talks-Bridging-Header.h"; sourceTree = "<group>"; };
+		92DDDA56222C488900491AE5 /* ThemesViewContoller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemesViewContoller.h; sourceTree = "<group>"; };
+		92DDDA57222C488900491AE5 /* ThemesViewContoller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemesViewContoller.m; sourceTree = "<group>"; };
+		92DDDA59222C491A00491AE5 /* Themes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Themes.h; sourceTree = "<group>"; };
+		92DDDA5B222C49AB00491AE5 /* ThemesViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemesViewControllerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +99,7 @@
 			children = (
 				9295C374221F361E00F12F4C /* Chat.swift */,
 				92DDDA4F2222BFC300491AE5 /* Message.swift */,
+				92DDDA59222C491A00491AE5 /* Themes.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -123,6 +131,7 @@
 		92C60DA4220E902C00894F60 /* Talks */ = {
 			isa = PBXGroup;
 			children = (
+				92DDDA5B222C49AB00491AE5 /* ThemesViewControllerDelegate.h */,
 				9295C378221FEDC400F12F4C /* Extensions */,
 				9295C373221F360600F12F4C /* Models */,
 				9295C370221F0AB700F12F4C /* Protocols */,
@@ -137,6 +146,9 @@
 				92C60DB1220E902E00894F60 /* LaunchScreen.storyboard */,
 				92C60DB4220E902E00894F60 /* Info.plist */,
 				92C60DAC220E902C00894F60 /* Talks.xcdatamodeld */,
+				92DDDA56222C488900491AE5 /* ThemesViewContoller.h */,
+				92DDDA57222C488900491AE5 /* ThemesViewContoller.m */,
+				92DDDA55222C488900491AE5 /* Talks-Bridging-Header.h */,
 			);
 			path = Talks;
 			sourceTree = "<group>";
@@ -184,6 +196,7 @@
 				TargetAttributes = {
 					92C60DA1220E902C00894F60 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -229,8 +242,10 @@
 				92C60DAE220E902C00894F60 /* Talks.xcdatamodeld in Sources */,
 				92DDDA542222D0C800491AE5 /* DatesHandler.swift in Sources */,
 				9295C369221DB75D00F12F4C /* ConversationListViewController.swift in Sources */,
+				92DDDA58222C488900491AE5 /* ThemesViewContoller.m in Sources */,
 				9295C377221F4E3800F12F4C /* ConversationViewController.swift in Sources */,
 				92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */,
+				92DDDA5A222C491A00491AE5 /* Themes.h in Sources */,
 				92C60DBC220F32E700894F60 /* ThreadLogger.swift in Sources */,
 				9295C375221F361E00F12F4C /* Chat.swift in Sources */,
 				9295C36C221F0A7400F12F4C /* ChatCell.swift in Sources */,
@@ -275,7 +290,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -336,7 +351,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -386,6 +401,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YK7M3B2TGF;
 				INFOPLIST_FILE = Talks/Info.plist;
@@ -396,6 +412,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = denis.garifyanov.com.Talks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Talks/Talks-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -405,6 +423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YK7M3B2TGF;
 				INFOPLIST_FILE = Talks/Info.plist;
@@ -415,6 +434,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = denis.garifyanov.com.Talks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Talks/Talks-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

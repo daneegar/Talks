@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ConversationListViewController: UIViewController {
+@objc class ConversationListViewController: UIViewController, ThemesChangeLogger {
     let logger = ThreadLogger(typeOfThread: .view)
     
     @IBOutlet weak var tableViewOfChats: UITableView!
@@ -48,7 +48,11 @@ class ConversationListViewController: UIViewController {
             self.listOfChats.append(Chat(name: RandomData.randomString(length: 10), message: RandomData.randomString(length: 10), date: RandomData.generateRandomDate(daysBack: 10), onlineStatus: RandomData.randomBool(), hasUnreadMessages: RandomData.randomBool()))
         }
     }
-
+    
+    func logThemeChanging(selectedTheme: UIColor){
+        print("theme has been changed!")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toChat" {
             //print(segue.identifier)
@@ -59,7 +63,18 @@ class ConversationListViewController: UIViewController {
                 segue.destination.title = self.listOfflineOpponents[selectedIndexPath.row].name
             }
         }
+        if segue.identifier == "showThemeaView" {
+            let navigationVC = segue.destination as! UINavigationController
+            print("to \(segue.destination)")
+            guard let targetViewController = navigationVC.viewControllers[0] as? ThemesViewContoller else {return}
+            targetViewController.delegate = self;
+        }
     }
+    //MARK: - actions
+    @IBAction func configButtonPressed(_ sender: Any) {
+        performSegue(withIdentifier: "showThemeaView", sender: nil)
+    }
+    
 }
 
 
