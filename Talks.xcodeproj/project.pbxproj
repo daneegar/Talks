@@ -89,6 +89,7 @@
 		9295C370221F0AB700F12F4C /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				92DDDA5B222C49AB00491AE5 /* ThemesViewControllerDelegate.h */,
 				9295C371221F0AC800F12F4C /* Protocols.swift */,
 			);
 			path = Protocols;
@@ -131,7 +132,6 @@
 		92C60DA4220E902C00894F60 /* Talks */ = {
 			isa = PBXGroup;
 			children = (
-				92DDDA5B222C49AB00491AE5 /* ThemesViewControllerDelegate.h */,
 				9295C378221FEDC400F12F4C /* Extensions */,
 				9295C373221F360600F12F4C /* Models */,
 				9295C370221F0AB700F12F4C /* Protocols */,

@@ -30,13 +30,13 @@
 
 
 - (IBAction)theme1:(id)sender {
-    self.view.backgroundColor = self.themes.theme1;
+    [self themesViewController:self didSelectTheme:self.themes.theme1];
 }
 - (IBAction)theme2:(id)sender {
-    self.view.backgroundColor = self.themes.theme2;
+    [self themesViewController:self didSelectTheme:self.themes.theme2];
 }
 - (IBAction)theme3:(id)sender {
-    self.view.backgroundColor = self.themes.theme3;
+    [self themesViewController:self didSelectTheme:self.themes.theme3];
 }
 - (IBAction)doneButtonTapped:(id)sender {
         printf("\n dismissed");
@@ -48,7 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    printf("View was loaded");
+    printf("View was loaded\n");
 
     // Do any additional setup after loading the view.
 }
@@ -64,7 +64,7 @@
 */
 
 - (void)themesViewController:(nonnull ThemesViewController *)controller didSelectTheme:(nonnull UIColor *)selectedTheme {
-    printf("somthing gonna happing");
+    printf("somthing gonna happing\n");
 }
 
 @end

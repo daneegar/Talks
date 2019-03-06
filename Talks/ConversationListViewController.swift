@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-@objc class ConversationListViewController: UIViewController, ThemesChangeLogger {
+@objc class ConversationListViewController: UIViewController {
     let logger = ThreadLogger(typeOfThread: .view)
+    
     
     @IBOutlet weak var tableViewOfChats: UITableView!
     var listOfChats: [Chat] = []
@@ -65,7 +66,6 @@ import UIKit
         }
         if segue.identifier == "showThemeaView" {
             let navigationVC = segue.destination as! UINavigationController
-            print("to \(segue.destination)")
             guard let targetViewController = navigationVC.viewControllers[0] as? ThemesViewContoller else {return}
             targetViewController.delegate = self;
         }

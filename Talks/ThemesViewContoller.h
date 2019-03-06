@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ThemesViewControllerDelegate.h"
 #import "Themes.h"
+#import "Talks-Swift.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ThemesViewContoller : UIViewController <ThemesViewControllerDelegate>
-@property (nonatomic, strong) UIViewController *delegate;
+@interface ThemesViewContoller : UIViewController
+@property (nonatomic, strong) ConversationListViewController* delegate;
 @property (nonatomic, strong) Themes *themes;
 - (id) init;
 
