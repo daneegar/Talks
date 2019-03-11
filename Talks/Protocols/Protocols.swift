@@ -19,7 +19,3 @@ protocol ConversationCellConfiguration: class {
 protocol MessageCellConfiguration: class {
     var text : String? {get set}
 }
-
-protocol ThemesChangeLogger: class {
-    func logThemeChanging(selectedTheme: UIColor)
-}
