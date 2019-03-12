@@ -46,8 +46,11 @@ class DataStoreGCD: DataAsyncStoreProtocol{
                     errorMessage = "load data goes wrong"
                     completion(nil, errorMessage)
                 }
-                
+                return
             }
+        }
+        else {
+            completion(nil, "There is know data yet")
         }
     }
     
