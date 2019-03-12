@@ -15,7 +15,21 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     let cameraHandler = CameraHandler()
     var keyboardHeight: CGFloat!
     var activeField: UITextView?
-
+    
+    var userProfile: UserProfile?
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("UserProfile.plist")
+    let defaults = UserDefaults.standard
+    var dataStoreLoadDHandler: DataAsyncStoreProtocol?
+    
+    let activityIndicator = UIActivityIndicatorView(style: .gray)
+    let okAllert = UIAlertController(title: "Данные сохранены", message: nil, preferredStyle: .alert)
+    enum queueMethods {
+        case GCD
+        case operations
+    }
+    
+    private var editingModeOn = false
+    
     @IBOutlet weak var profilePhoto: UIImageView!
     @IBOutlet weak var buttonsView: UIViewAnimating!
     @IBOutlet weak var buttonEdit: UIButton!
@@ -26,9 +40,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var aboutTextView: UITextView!
-
-
+    
+    @IBOutlet weak var heightOfProfilePhotoView: NSLayoutConstraint!
     @IBOutlet weak var constraintContenViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var buttinViewBottom: NSLayoutConstraint!
     
     
     
@@ -46,21 +61,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func doneButtonPressed (_ sender: Any){
         self.handleGesture()
     }
-
+    
     @IBAction func gcdButtonPressed(_ sender: Any) {
         
+        self.dataStoreLoadDHandler = DataStoreGCD()
+        self.saveData()
     }
     
     @IBAction func operationButtonPressed(_ sender: Any) {
-        
+        self.dataStoreLoadDHandler = DataStoreOperation()
+        self.saveData()
     }
     
-    //MARK: - переопределенный конструктор
-    required init?(coder aDecoder: NSCoder) {
-        print(self.buttonEdit?.frame ?? "There is no button yet")
-        super.init(coder: aDecoder)
-        
-    }
     
     //MARK: - методы вызываемые в жизненом цикле вью
     override func viewDidLoad() {
@@ -69,6 +81,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.threadLogger.printStep()
         self.disableEditingMode()
         self.addObserveToKeyboard()
+        self.setupActivityIndicator()
+        self.setupAllerts()
+        self.loadData()
         super.viewDidLoad()
         print("The button frame is: \(self.buttonEdit.frame)")
         self.setupButtons()
@@ -117,10 +132,58 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.profilePhoto.layer.cornerRadius = 40
         self.iconAddPhoto.layer.cornerRadius = 40
     }
+    
+    private func setupActivityIndicator()
+    {
+        self.activityIndicator.hidesWhenStopped = true
+        self.activityIndicator.center = view.center
+        self.view.addSubview(activityIndicator)
+    }
+    
+    private func setupAllerts()
+    {
+        self.okAllert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    }
     //MARK: - image pinner
     func pickTaken(image takenImage: UIImage) {
         self.profilePhoto.image = takenImage
     }
+    
+    //MARK: - save load data methods
+    func loadData(){
+        self.activityIndicator.startAnimating()
+        self.dataStoreLoadDHandler = DataStoreGCD()
+        self.dataStoreLoadDHandler?.loadData(inPath: self.dataFilePath!, forModel: self.userProfile, completion: { (data, error) in
+            self.userProfile = data
+            DispatchQueue.main.async {
+                self.profilePhoto.image = self.userProfile?.avatar
+                self.aboutTextView.text = self.userProfile?.aboutInformation
+                self.nameTextField.text = self.userProfile?.name
+                self.activityIndicator.stopAnimating()
+            }
+        })
+    }
+    
+    func saveData()
+    {
+        self.userProfile = UserProfile(name: self.nameTextField.text!, aboutInfirmation: self.aboutTextView.text, avatar: self.profilePhoto.image!)
+        self.activityIndicator.startAnimating()
+        self.buttonGCD.isEnabled = false
+        self.buttonOperation.isEnabled = false
+        self.dataStoreLoadDHandler?.storeData(data: self.userProfile, inPath: self.dataFilePath!, forKey: "UserProfile.plist") { (error) in
+            DispatchQueue.main.async{
+                if let error = error {
+                    print(error)
+                    self.okAllert.addAction(UIAlertAction(title: "Повторить", style: .default, handler: { (allertAction) in
+                        self.saveData()
+                    }))
+                }
+                self.activityIndicator.stopAnimating()
+                self.present(self.okAllert, animated: true)
+            }
+        }
+    }
+    
     
 }
 // MARK: - editing mode handlers
@@ -131,14 +194,18 @@ extension ProfileViewController
         self.aboutTextView.textColor = UIColor(rgb: 0xD3D3D3, alpha: 1.0)
         self.nameTextField.isEnabled = false
         self.nameTextField.textColor = UIColor(rgb: 0xD3D3D3, alpha: 1.0)
+        self.iconAddPhoto.isHidden = true
     }
     func switchEditingMode(){
-        UIView.animate(withDuration: 1.0) {
-            self.aboutTextView.isEditable = !self.aboutTextView.isEditable
-            self.aboutTextView.textColor = self.aboutTextView.isEditable ? .black : UIColor(rgb: 0xD3D3D3, alpha: 1.0)
-            self.nameTextField.isEnabled = !self.nameTextField.isEnabled
-            self.nameTextField.textColor = self.nameTextField.isEnabled ? .black : UIColor(rgb: 0xD3D3D3, alpha: 1.0)
-        }
+        self.editingModeOn = !self.editingModeOn
+        UIView.animate(withDuration: 0.3, animations: {
+            self.aboutTextView.isEditable = self.editingModeOn
+            self.aboutTextView.textColor = self.editingModeOn ? .black : UIColor(rgb: 0xD3D3D3, alpha: 1.0)
+            self.nameTextField.isEnabled = self.editingModeOn
+            self.nameTextField.textColor = self.editingModeOn ? .black : UIColor(rgb: 0xD3D3D3, alpha: 1.0)
+            self.iconAddPhoto.isHidden = !self.editingModeOn
+            self.contentView.layoutIfNeeded()
+        }, completion: nil)
     }
 }
 // MARK:- keyboard methods and observers
@@ -160,12 +227,16 @@ extension ProfileViewController
             keyboardHeight = keyboardSize.height
             UIView.animate(withDuration: 0.3, animations: {
                 self.constraintContenViewHeight.constant += self.keyboardHeight + 100
+                self.buttinViewBottom.constant += self.keyboardHeight
+                self.view.layoutIfNeeded()
             })
         }
     }
     @objc func keyboardWillHied(notification: NSNotification) {
         UIView.animate(withDuration: 0.3) {
             self.constraintContenViewHeight.constant -= self.keyboardHeight - 100
+            self.buttinViewBottom.constant -= self.keyboardHeight
+            self.view.layoutIfNeeded()
         }
     }
     @objc func endEditing()
@@ -178,6 +249,6 @@ extension ProfileViewController
 @objc extension ProfileViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
     }
-
+    
 }
 

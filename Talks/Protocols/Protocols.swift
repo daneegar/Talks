@@ -19,3 +19,9 @@ protocol ConversationCellConfiguration: class {
 protocol MessageCellConfiguration: class {
     var text : String? {get set}
 }
+
+
+protocol DataAsyncStoreProtocol {
+    func loadData <T: Codable> (inPath url: URL, forModel: T?, completion: @escaping (T?, String?)->Void)
+    func storeData <T: Codable> (data: T, inPath url: URL, forKey: String, completion: ((String?)->Void)?)
+}

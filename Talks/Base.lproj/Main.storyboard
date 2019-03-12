@@ -247,6 +247,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="aboutTextView" destination="xef-aN-ONG" id="M9o-HV-3Aq"/>
+                        <outlet property="buttinViewBottom" destination="dBI-QN-WY6" id="hIW-KM-Ehb"/>
                         <outlet property="buttonEdit" destination="uJw-uf-bqB" id="OyF-4D-cr3"/>
                         <outlet property="buttonGCD" destination="Nha-eu-Y8M" id="os0-ki-QWB"/>
                         <outlet property="buttonOperation" destination="1BX-lg-GHj" id="ZKT-ZX-IIa"/>
@@ -254,6 +255,7 @@
                         <outlet property="constraintContenViewHeight" destination="2P2-9m-LbE" id="ExE-tK-c0A"/>
                         <outlet property="contentScrollView" destination="vem-hu-Rjq" id="m2T-9T-aZ4"/>
                         <outlet property="contentView" destination="9iO-f9-s0r" id="vBn-Dc-LNt"/>
+                        <outlet property="heightOfProfilePhotoView" destination="qGv-iA-KqQ" id="YZG-IJ-5oO"/>
                         <outlet property="iconAddPhoto" destination="8Jh-5g-nP5" id="Kug-pG-h5I"/>
                         <outlet property="nameTextField" destination="eXZ-Gl-mvb" id="bgq-DP-jjj"/>
                         <outlet property="profilePhoto" destination="42v-RZ-yMy" id="p7c-Ta-Ilf"/>

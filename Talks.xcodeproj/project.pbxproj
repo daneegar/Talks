@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92334CAC221964DF00FD0820 /* CameraHandler.swift */; };
+		9242FEC1223771D00099DCFD /* DataStoreGCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242FEC0223771D00099DCFD /* DataStoreGCD.swift */; };
+		9242FEC3223773DE0099DCFD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242FEC2223773DE0099DCFD /* UserProfile.swift */; };
+		9242FEC52237D4BF0099DCFD /* EnDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242FEC42237D4BF0099DCFD /* EnDecoding.swift */; };
+		9242FEC72238127F0099DCFD /* DataStoreOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242FEC62238127F0099DCFD /* DataStoreOperation.swift */; };
 		9295C369221DB75D00F12F4C /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295C368221DB75D00F12F4C /* ConversationListViewController.swift */; };
 		9295C36C221F0A7400F12F4C /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295C36A221F0A7400F12F4C /* ChatCell.swift */; };
 		9295C36D221F0A7400F12F4C /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9295C36B221F0A7400F12F4C /* ChatCell.xib */; };
@@ -32,6 +36,10 @@
 
 /* Begin PBXFileReference section */
 		92334CAC221964DF00FD0820 /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHandler.swift; sourceTree = "<group>"; };
+		9242FEC0223771D00099DCFD /* DataStoreGCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreGCD.swift; sourceTree = "<group>"; };
+		9242FEC2223773DE0099DCFD /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		9242FEC42237D4BF0099DCFD /* EnDecoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnDecoding.swift; sourceTree = "<group>"; };
+		9242FEC62238127F0099DCFD /* DataStoreOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreOperation.swift; sourceTree = "<group>"; };
 		9295C368221DB75D00F12F4C /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
 		9295C36A221F0A7400F12F4C /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		9295C36B221F0A7400F12F4C /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -92,6 +100,7 @@
 			children = (
 				9295C374221F361E00F12F4C /* Chat.swift */,
 				92DDDA4F2222BFC300491AE5 /* Message.swift */,
+				9242FEC2223773DE0099DCFD /* UserProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -100,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				9295C379221FEDE100F12F4C /* UIColor.swift */,
+				9242FEC42237D4BF0099DCFD /* EnDecoding.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -148,6 +158,8 @@
 				92334CAC221964DF00FD0820 /* CameraHandler.swift */,
 				92DDDA4D2222BBAE00491AE5 /* RandomData.swift */,
 				92DDDA532222D0C800491AE5 /* DatesHandler.swift */,
+				9242FEC0223771D00099DCFD /* DataStoreGCD.swift */,
+				9242FEC62238127F0099DCFD /* DataStoreOperation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -228,7 +240,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				92C60DAE220E902C00894F60 /* Talks.xcdatamodeld in Sources */,
+				9242FEC52237D4BF0099DCFD /* EnDecoding.swift in Sources */,
 				92DDDA542222D0C800491AE5 /* DatesHandler.swift in Sources */,
+				9242FEC1223771D00099DCFD /* DataStoreGCD.swift in Sources */,
 				9295C369221DB75D00F12F4C /* ConversationListViewController.swift in Sources */,
 				9295C377221F4E3800F12F4C /* ConversationViewController.swift in Sources */,
 				92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */,
@@ -242,6 +256,8 @@
 				92C60DA6220E902C00894F60 /* AppDelegate.swift in Sources */,
 				9295C372221F0AC800F12F4C /* Protocols.swift in Sources */,
 				92DDDA502222BFC300491AE5 /* Message.swift in Sources */,
+				9242FEC3223773DE0099DCFD /* UserProfile.swift in Sources */,
+				9242FEC72238127F0099DCFD /* DataStoreOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
