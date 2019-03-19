@@ -14,7 +14,11 @@ class Message: MessageCellConfiguration {
     var dateOfPublic: Date?
     var dateOfWasReaded: Date?
     var dateOfWasEdited: Date?
-    init(text: String?, typeOfMessage: MessageType) {
+    var nextMessage: Message?
+    var isUnReaded: Bool?
+    let messageID: String
+    init(messageID: String, text: String?, typeOfMessage: MessageType) {
+        self.messageID = messageID
         self.text = text
         self.typeOfMessage = typeOfMessage
     }

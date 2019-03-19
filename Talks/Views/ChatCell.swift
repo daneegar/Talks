@@ -9,8 +9,9 @@
 import UIKit
 
 class ChatCell: UITableViewCell, ConversationCellConfiguration {
+    
+    var message: Message?
     var name: String?
-    var message: String?
     var date: Date?
     //TODO: - you should to do smth with its default constants.
     var online: Bool = false
@@ -31,19 +32,19 @@ class ChatCell: UITableViewCell, ConversationCellConfiguration {
 
         // Configure the view for the selected state
     }
-    func configProperies(withChatModel instance: Chat) {
-        self.name = instance.name
-        self.message = instance.message
-        self.date = instance.date
-        self.online = instance.online
-        self.hasUnreadMessages = instance.hasUnreadMessages
+    func configProperies(withChatModel instance: User) {
+        self.name = instance.userName
+        self.message = instance.chat?.message
+        self.date = instance.chat?.date
+        self.online = (instance.chat?.online)!
+        self.hasUnreadMessages = (instance.chat?.hasUnreadMessages)!
         self.configCellView()
     }
     
     func configCellView() {
         self.nameLabel.text = name
         if let message = self.message {
-            self.lastText.text = message
+            self.lastText.text = message.text
         } else {
             self.lastText.text = "No messages yet"
             self.lastText.font = UIFont.boldSystemFont(ofSize: 16.0)

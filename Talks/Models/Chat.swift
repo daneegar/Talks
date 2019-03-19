@@ -10,13 +10,12 @@ import Foundation
 
 class Chat: ConversationCellConfiguration {
     var name: String?
-    var message: String?
+    var message: Message?
     var date: Date?
     var online: Bool
     var hasUnreadMessages: Bool
-    init(name: String?, message: String?, date: Date?, onlineStatus: Bool, hasUnreadMessages: Bool) {
+    init(name: String?, date: Date?, onlineStatus: Bool, hasUnreadMessages: Bool) {
         self.name = name
-        self.message = message
         self.date = date
         self.online = onlineStatus
         self.hasUnreadMessages = hasUnreadMessages

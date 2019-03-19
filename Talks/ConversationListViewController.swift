@@ -14,39 +14,18 @@ class ConversationListViewController: UIViewController {
     
     @IBOutlet weak var tableViewOfChats: UITableView!
     var listOfChats: [Chat] = []
-    //README: :- я понимаю что такой способо организации двух списков довольно затратный, но сделаю рефакторинг когда будет понятно откуда и как эти данные будут браться, на данный момент вижу как двумерный массив. Протестировал на двух тысячах чатах, все скролится ок.
-    var listOfOnlineOpponents: [Chat] {
-        get {
-            var result: [Chat] = []
-            for chat in listOfChats {
-                if chat.online {result.append(chat)}
-            }
-            return result
-        }
-    }
-    var listOfflineOpponents: [Chat] {
-        get {
-                var result: [Chat] = []
-                for chat in listOfChats {
-                    if !chat.online {result.append(chat)}
-                }
-                return result
-        }
-    }
+    var communicator: CommunicationManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configCommunicator()
         self.tableViewOfChats.register(UINib(nibName: "ChatCell", bundle: nil), forCellReuseIdentifier: "ChatCell")
-        self.richList()
         self.tableViewOfChats.reloadData()
         self.navigationItem.title = "Tinkoff Chat"
+        
     }
     //MARK: - lets test our TableView with Cells
     private func richList() {
-        print("Тестовое наполнение списка чатов, все заполняется случайным образом, случайная дата выбирается в диапазоне с десяти суток назад по настоящий момент")
-        for _ in 0...31 {
-            self.listOfChats.append(Chat(name: RandomData.randomString(length: 10), message: RandomData.randomString(length: 10), date: RandomData.generateRandomDate(daysBack: 10), onlineStatus: RandomData.randomBool(), hasUnreadMessages: RandomData.randomBool()))
-        }
     }
     
     func logThemeChanging(selectedTheme: UIColor){
@@ -58,10 +37,12 @@ class ConversationListViewController: UIViewController {
             //print(segue.identifier)
             guard let selectedIndexPath = self.tableViewOfChats.indexPathForSelectedRow else {return}
             if selectedIndexPath.section == 0 {
-                segue.destination.title =  self.listOfOnlineOpponents[selectedIndexPath.row].name
+                segue.destination.title =  "done with it"
             } else {
-                segue.destination.title = self.listOfflineOpponents[selectedIndexPath.row].name
+                segue.destination.title = "done with it"
             }
+            let destinataion = segue.destination as! ConversationViewController
+            destinataion.communicator = self.communicator
         }
         if segue.identifier == "showThemeaView" {
             let _ = segue.destination as! UINavigationController
@@ -73,35 +54,38 @@ class ConversationListViewController: UIViewController {
         performSegue(withIdentifier: "showThemeaView", sender: nil)
     }
     
+    func configCommunicator(){
+        let loader = DataStoreGCD()
+        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("UserProfile.plist")
+        let userProfile = UserProfile()
+        loader.loadData(inPath: dataFilePath!, forModel: userProfile, completion: { (data, error) in
+            DispatchQueue.main.async {
+                if let userProfile = data {
+                    self.communicator = CommunicationManager(delegate: self, peerID: userProfile.name!)
+                } else {
+                    self.communicator = CommunicationManager(delegate: self, peerID: "default")
+                }
+            }
+        })
+    }
+    
 }
-
-
-
-
 
 //MARK: - TableView methods
 extension ConversationListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return self.listOfOnlineOpponents.count
-        } else {
-            return self.listOfflineOpponents.count
-        }
+        guard let counted = self.communicator?.listOfPeers.count else {return 0}
+        return counted
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = indexPath.section
         let cell = self.tableViewOfChats.dequeueReusableCell(withIdentifier: "ChatCell") as! ChatCell
-        if section == 0 {
-            cell.configProperies(withChatModel: self.listOfOnlineOpponents[indexPath.row])
-        } else {
-            cell.configProperies(withChatModel: self.listOfflineOpponents[indexPath.row])
-        }
+        cell.configProperies(withChatModel: (communicator?.listOfPeers[indexPath.row])!)
         cell.accessoryType = .disclosureIndicator
         return cell
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -114,5 +98,19 @@ extension ConversationListViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "toChat", sender: nil)
     }
+    
+}
+
+extension ConversationListViewController: CommunicatorViewControllerDelegate{
+    func communicationManagerFoundNewUser() {
+        DispatchQueue.main.async {
+            self.tableViewOfChats.reloadData()
+        }
+    }
+    
+    func communicationManagerRecieveMessage(forUser: User) {
+        
+    }
+    
     
 }

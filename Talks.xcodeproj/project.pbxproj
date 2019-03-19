@@ -14,6 +14,7 @@
 		9242FEC3223773DE0099DCFD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242FEC2223773DE0099DCFD /* UserProfile.swift */; };
 		9242FEC52237D4BF0099DCFD /* EnDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242FEC42237D4BF0099DCFD /* EnDecoding.swift */; };
 		9242FEC72238127F0099DCFD /* DataStoreOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242FEC62238127F0099DCFD /* DataStoreOperation.swift */; };
+		9291ABA52240F9C500AB9A37 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291ABA42240F9C500AB9A37 /* User.swift */; };
 		9295C369221DB75D00F12F4C /* ConversationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295C368221DB75D00F12F4C /* ConversationListViewController.swift */; };
 		9295C36C221F0A7400F12F4C /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295C36A221F0A7400F12F4C /* ChatCell.swift */; };
 		9295C36D221F0A7400F12F4C /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9295C36B221F0A7400F12F4C /* ChatCell.xib */; };
@@ -46,6 +47,7 @@
 		9242FEC2223773DE0099DCFD /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		9242FEC42237D4BF0099DCFD /* EnDecoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnDecoding.swift; sourceTree = "<group>"; };
 		9242FEC62238127F0099DCFD /* DataStoreOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreOperation.swift; sourceTree = "<group>"; };
+		9291ABA42240F9C500AB9A37 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9295C368221DB75D00F12F4C /* ConversationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationListViewController.swift; sourceTree = "<group>"; };
 		9295C36A221F0A7400F12F4C /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		9295C36B221F0A7400F12F4C /* ChatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				9295C374221F361E00F12F4C /* Chat.swift */,
 				92DDDA4F2222BFC300491AE5 /* Message.swift */,
 				9242FEC2223773DE0099DCFD /* UserProfile.swift */,
+				9291ABA42240F9C500AB9A37 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */,
 				92C60DBC220F32E700894F60 /* ThreadLogger.swift in Sources */,
 				9295C375221F361E00F12F4C /* Chat.swift in Sources */,
+				9291ABA52240F9C500AB9A37 /* User.swift in Sources */,
 				9295C36C221F0A7400F12F4C /* ChatCell.swift in Sources */,
 				9295C37A221FEDE100F12F4C /* UIColor.swift in Sources */,
 				92C60DA8220E902C00894F60 /* ProfileViewController.swift in Sources */,

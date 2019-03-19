@@ -18,11 +18,13 @@ class MultipeerCommunicator: NSObject, Communicator{
     
     
     private let serviceType = "tinkoff-chat"
-    //private let discoveryInfo: [String: String]?
     
     private let myPeerId: MCPeerID
     private var serviceAdvertiser: MCNearbyServiceAdvertiser
     private var serviceBrowser: MCNearbyServiceBrowser
+    private let discoveryInfo: [String:String]
+    
+    private var listOfPeers: [MCPeerID] = []
     
     
     
@@ -36,10 +38,12 @@ class MultipeerCommunicator: NSObject, Communicator{
     
     init(_ peerIDdisplayName: String){
         self.myPeerId = MCPeerID(displayName: peerIDdisplayName)
-        self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: self.myPeerId, discoveryInfo: nil, serviceType: self.serviceType)
+        self.discoveryInfo = ["userName": peerIDdisplayName]
+        self.serviceAdvertiser = MCNearbyServiceAdvertiser(peer: self.myPeerId, discoveryInfo: self.discoveryInfo, serviceType: self.serviceType)
         self.serviceBrowser = MCNearbyServiceBrowser(peer: self.myPeerId, serviceType: self.serviceType)
         self.session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .required)
         self.online = true
+        
         super.init()
         
         self.session.delegate = self
@@ -47,24 +51,23 @@ class MultipeerCommunicator: NSObject, Communicator{
         self.serviceBrowser.delegate = self
         self.serviceAdvertiser.startAdvertisingPeer()
         self.serviceBrowser.startBrowsingForPeers()
-        
     }
     
     deinit {
         self.serviceAdvertiser.stopAdvertisingPeer()
     }
+    
+    func generateMessageId() -> String {
+        return "\(arc4random_uniform(UINT32_MAX))+\(Date.timeIntervalSinceReferenceDate)"
+            .data(using: .utf8)!.base64EncodedString()
+    }
 }
 
 extension MultipeerCommunicator : MCNearbyServiceAdvertiserDelegate{
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
-            NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
-        }
-        
-        func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-            NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
-            invitationHandler(true, self.session)
-        }
+        NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
+        print("was invited by\(peerID)")
+        invitationHandler(true, self.session)
     }
 }
 
@@ -76,7 +79,7 @@ extension MultipeerCommunicator: MCNearbyServiceBrowserDelegate{
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         NSLog("%@", "foundPeer: \(peerID)")
         NSLog("%@", "invitePeer: \(peerID)")
-        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
+        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 30)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
@@ -108,12 +111,15 @@ extension MultipeerCommunicator: MCSessionDelegate{
         switch state {
         case MCSessionState.connected:
             print("Connected: \(peerID.displayName)")
+            self.delegate?.didFoundUser(userID: peerID.displayName, userName: peerID.displayName)
             
         case MCSessionState.connecting:
             print("Connecting: \(peerID.displayName)")
             
         case MCSessionState.notConnected:
             print("Not Connected: \(peerID.displayName)")
+            self.delegate?.didLostUser(userID: peerID.displayName)
+            
         }
     }
 

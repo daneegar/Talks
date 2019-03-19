@@ -10,7 +10,7 @@ import Foundation
 
 protocol ConversationCellConfiguration: class {
     var name : String? {get set}
-    var message : String? {get set}
+    var message : Message? {get set}
     var date : Date? {get set}
     var online : Bool {get set}
     var hasUnreadMessages : Bool {get set}
@@ -44,4 +44,9 @@ protocol  CommunicatorDelegate: class {
     
     //messages
     func didRecieveMessage(text: String, fromUsers: String, toUser: String)
+}
+
+protocol CommunicatorViewControllerDelegate: class {
+    func communicationManagerFoundNewUser()
+    func communicationManagerRecieveMessage(forUser: User)
 }
