@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		922627BE223967F20073DA1A /* MultipeerCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922627BD223967F20073DA1A /* MultipeerCommunicator.swift */; };
+		922627D622404F280073DA1A /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 922627D522404F280073DA1A /* ExternalAccessory.framework */; };
 		92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92334CAC221964DF00FD0820 /* CameraHandler.swift */; };
 		9242FEC1223771D00099DCFD /* DataStoreGCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242FEC0223771D00099DCFD /* DataStoreGCD.swift */; };
 		9242FEC3223773DE0099DCFD /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9242FEC2223773DE0099DCFD /* UserProfile.swift */; };
@@ -32,9 +34,13 @@
 		92DDDA502222BFC300491AE5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDA4F2222BFC300491AE5 /* Message.swift */; };
 		92DDDA522222C8F400491AE5 /* OutGoingMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92DDDA512222C8F400491AE5 /* OutGoingMessageCell.xib */; };
 		92DDDA542222D0C800491AE5 /* DatesHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DDDA532222D0C800491AE5 /* DatesHandler.swift */; };
+		92ECB1292240D53E00765B01 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92ECB1282240D53E00765B01 /* CommunicationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		922627BD223967F20073DA1A /* MultipeerCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerCommunicator.swift; sourceTree = "<group>"; };
+		922627D322404F280073DA1A /* Talks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Talks.entitlements; sourceTree = "<group>"; };
+		922627D522404F280073DA1A /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		92334CAC221964DF00FD0820 /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHandler.swift; sourceTree = "<group>"; };
 		9242FEC0223771D00099DCFD /* DataStoreGCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStoreGCD.swift; sourceTree = "<group>"; };
 		9242FEC2223773DE0099DCFD /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
@@ -62,6 +68,7 @@
 		92DDDA4F2222BFC300491AE5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		92DDDA512222C8F400491AE5 /* OutGoingMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OutGoingMessageCell.xib; sourceTree = "<group>"; };
 		92DDDA532222D0C800491AE5 /* DatesHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatesHandler.swift; sourceTree = "<group>"; };
+		92ECB1282240D53E00765B01 /* CommunicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,12 +76,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				922627D622404F280073DA1A /* ExternalAccessory.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		922627D422404F280073DA1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				922627D522404F280073DA1A /* ExternalAccessory.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9295C36E221F0A7D00F12F4C /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +135,7 @@
 			children = (
 				92C60DA4220E902C00894F60 /* Talks */,
 				92C60DA3220E902C00894F60 /* Products */,
+				922627D422404F280073DA1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,6 +150,7 @@
 		92C60DA4220E902C00894F60 /* Talks */ = {
 			isa = PBXGroup;
 			children = (
+				922627D322404F280073DA1A /* Talks.entitlements */,
 				9295C378221FEDC400F12F4C /* Extensions */,
 				9295C373221F360600F12F4C /* Models */,
 				9295C370221F0AB700F12F4C /* Protocols */,
@@ -160,6 +178,8 @@
 				92DDDA532222D0C800491AE5 /* DatesHandler.swift */,
 				9242FEC0223771D00099DCFD /* DataStoreGCD.swift */,
 				9242FEC62238127F0099DCFD /* DataStoreOperation.swift */,
+				922627BD223967F20073DA1A /* MultipeerCommunicator.swift */,
+				92ECB1282240D53E00765B01 /* CommunicationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -197,6 +217,11 @@
 					92C60DA1220E902C00894F60 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.WAC = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -243,6 +268,7 @@
 				9242FEC52237D4BF0099DCFD /* EnDecoding.swift in Sources */,
 				92DDDA542222D0C800491AE5 /* DatesHandler.swift in Sources */,
 				9242FEC1223771D00099DCFD /* DataStoreGCD.swift in Sources */,
+				92ECB1292240D53E00765B01 /* CommunicationManager.swift in Sources */,
 				9295C369221DB75D00F12F4C /* ConversationListViewController.swift in Sources */,
 				9295C377221F4E3800F12F4C /* ConversationViewController.swift in Sources */,
 				92334CAD221964DF00FD0820 /* CameraHandler.swift in Sources */,
@@ -254,6 +280,7 @@
 				9295C37F221FF49200F12F4C /* MessageCell.swift in Sources */,
 				92DDDA4E2222BBAE00491AE5 /* RandomData.swift in Sources */,
 				92C60DA6220E902C00894F60 /* AppDelegate.swift in Sources */,
+				922627BE223967F20073DA1A /* MultipeerCommunicator.swift in Sources */,
 				9295C372221F0AC800F12F4C /* Protocols.swift in Sources */,
 				92DDDA502222BFC300491AE5 /* Message.swift in Sources */,
 				9242FEC3223773DE0099DCFD /* UserProfile.swift in Sources */,
@@ -405,6 +432,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = Talks/Talks.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YK7M3B2TGF;
 				INFOPLIST_FILE = Talks/Info.plist;
@@ -428,6 +456,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = Talks/Talks.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YK7M3B2TGF;
 				INFOPLIST_FILE = Talks/Info.plist;
