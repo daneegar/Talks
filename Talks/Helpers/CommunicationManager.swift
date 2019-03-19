@@ -50,8 +50,20 @@ class CommunicationManager: CommunicatorDelegate {
         
     }
     
-    func didRecieveMessage(text: String, fromUsers: String, toUser: String) {
-        
+    func didRecieveMessage(text: Message, fromUser: String, toUser: String) {
+        let tempUser = User(userID: fromUser, userName: fromUser, isOnline: true)
+        if let index = listOfPeers.index(of: tempUser) {
+            listOfPeers[index].chat.addMessage(message: text)
+            self.delegate.communicationManagerRecieveMessage(forUser: listOfPeers[index])
+        }
+    }
+    
+    func findUser(byDisplayName userID: String) -> User?{
+        let tempUser = User(userID: userID, userName: userID, isOnline: true)
+        if let index = listOfPeers.index(of: tempUser){
+            return listOfPeers[index]
+        }
+        return nil
     }
 
 }

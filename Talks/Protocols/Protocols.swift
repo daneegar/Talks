@@ -10,7 +10,7 @@ import Foundation
 
 protocol ConversationCellConfiguration: class {
     var name : String? {get set}
-    var message : Message? {get set}
+    var message : [Message] {get set}
     var date : Date? {get set}
     var online : Bool {get set}
     var hasUnreadMessages : Bool {get set}
@@ -28,7 +28,7 @@ protocol DataAsyncStoreProtocol {
 
 
 protocol Communicator {
-    func sendMessage(string: String, to userID: String, complitionHandler : ((_ success: Bool, _ error: Error?)->())?)
+    func sendMessage(string: Message, to userID: String, complitionHandler : ((_ success: Bool, _ error: Error?)->())?)
     var delegate: CommunicatorDelegate? {get set}
     var online: Bool {get set}
 }
@@ -43,7 +43,7 @@ protocol  CommunicatorDelegate: class {
     func failedToStartAdvertising(error : Error)
     
     //messages
-    func didRecieveMessage(text: String, fromUsers: String, toUser: String)
+    func didRecieveMessage(text: Message, fromUser: String, toUser: String)
 }
 
 protocol CommunicatorViewControllerDelegate: class {

@@ -11,10 +11,14 @@ import UIKit
 
 class ConversationListViewController: UIViewController {
     
+    @IBOutlet weak var isBrowserMode: UISwitch!
     
     @IBOutlet weak var tableViewOfChats: UITableView!
     var listOfChats: [Chat] = []
     var communicator: CommunicationManager?
+    @IBAction func toggleSwitch(_ sender: Any) {
+        communicator?.communicator.online = isBrowserMode.isOn
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +26,9 @@ class ConversationListViewController: UIViewController {
         self.tableViewOfChats.register(UINib(nibName: "ChatCell", bundle: nil), forCellReuseIdentifier: "ChatCell")
         self.tableViewOfChats.reloadData()
         self.navigationItem.title = "Tinkoff Chat"
-        
+        communicator?.communicator.online = isBrowserMode.isOn
     }
+    
     //MARK: - lets test our TableView with Cells
     private func richList() {
     }
@@ -34,15 +39,13 @@ class ConversationListViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toChat" {
-            //print(segue.identifier)
             guard let selectedIndexPath = self.tableViewOfChats.indexPathForSelectedRow else {return}
-            if selectedIndexPath.section == 0 {
-                segue.destination.title =  "done with it"
-            } else {
-                segue.destination.title = "done with it"
-            }
             let destinataion = segue.destination as! ConversationViewController
-            destinataion.communicator = self.communicator
+            if selectedIndexPath.row > (self.communicator?.listOfPeers.count)! {return}
+            if let selectedUserID = communicator?.listOfPeers[selectedIndexPath.row]{
+                destinataion.userID = selectedUserID
+                destinataion.communicator = self.communicator
+            } else {return}
         }
         if segue.identifier == "showThemeaView" {
             let _ = segue.destination as! UINavigationController
@@ -80,7 +83,11 @@ extension ConversationListViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableViewOfChats.dequeueReusableCell(withIdentifier: "ChatCell") as! ChatCell
-        cell.configProperies(withChatModel: (communicator?.listOfPeers[indexPath.row])!)
+        if indexPath.row > (self.communicator?.listOfPeers.count)! {return UITableViewCell()}
+        if (self.communicator?.listOfPeers.isEmpty)! {return UITableViewCell()}
+        if let peer = communicator?.listOfPeers[indexPath.row]{
+            cell.configProperies(withChatModel: peer)
+        }
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -109,7 +116,9 @@ extension ConversationListViewController: CommunicatorViewControllerDelegate{
     }
     
     func communicationManagerRecieveMessage(forUser: User) {
-        
+        DispatchQueue.main.async {
+            self.tableViewOfChats.reloadData()
+        }
     }
     
     

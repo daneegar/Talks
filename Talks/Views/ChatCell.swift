@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatCell: UITableViewCell, ConversationCellConfiguration {
+class ChatCell: UITableViewCell {
     
     var message: Message?
     var name: String?
@@ -34,10 +34,10 @@ class ChatCell: UITableViewCell, ConversationCellConfiguration {
     }
     func configProperies(withChatModel instance: User) {
         self.name = instance.userName
-        self.message = instance.chat?.message
-        self.date = instance.chat?.date
-        self.online = (instance.chat?.online)!
-        self.hasUnreadMessages = (instance.chat?.hasUnreadMessages)!
+        self.message = instance.chat.message.last
+        self.date = instance.chat.date
+        self.online = instance.chat.online
+        self.hasUnreadMessages = instance.chat.hasUnreadMessages
         self.configCellView()
     }
     

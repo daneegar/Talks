@@ -14,7 +14,7 @@ class User: UserProfile, Equatable{
     }
     let userID: String
     var userName: String
-    var chat:  Chat?
+    var chat:  Chat
     init(userID: String, userName: String, isOnline: Bool){
         self.userID = userID
         self.userName = userID

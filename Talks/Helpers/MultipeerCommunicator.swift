@@ -29,9 +29,32 @@ class MultipeerCommunicator: NSObject, Communicator{
     
     
     weak var delegate: CommunicatorDelegate?
-    var online: Bool
-    func sendMessage(string: String, to userID: String, complitionHandler: ((Bool, Error?) -> ())?) {
-        
+    var online: Bool{
+        didSet{
+            if online {
+                self.serviceBrowser.stopBrowsingForPeers()
+                self.serviceAdvertiser.startAdvertisingPeer()
+            } else {
+                self.serviceAdvertiser.stopAdvertisingPeer()
+                self.serviceBrowser.startBrowsingForPeers()
+            }
+        }
+    }
+    func sendMessage(string: Message, to userID: String, complitionHandler: ((Bool, Error?) -> ())?) {
+        let jsonObject = NSMutableDictionary()
+        jsonObject.setValue("TextMessage", forKey: "eventType")
+        jsonObject.setValue(self.generateMessageId(), forKey: "messageId")
+        jsonObject.setValue(string, forKey: "text")
+        do {
+        let jsonData =  try JSONEncoder().encode(string)
+            for peer in self.session.connectedPeers{
+                if peer.displayName == userID{
+                try self.session.send(jsonData, toPeers: [peer], with: .reliable)
+                }
+            }
+        } catch {
+            print(error)
+        }
     }
     
     var session : MCSession
@@ -92,6 +115,13 @@ extension MultipeerCommunicator: MCSessionDelegate{
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
+        let decoder = JSONDecoder()
+        do {
+            let message = try decoder.decode(Message.self, from: data)
+            self.delegate?.didRecieveMessage(text: message, fromUser: peerID.displayName, toUser: "")
+        }
+        catch {print("date ComesLike Shit")}
+        
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
