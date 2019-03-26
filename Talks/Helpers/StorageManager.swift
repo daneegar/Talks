@@ -28,9 +28,11 @@ class StorageManager {
         return nil
     }
     
-    func storeDateInMainThread(){
+    func storeDateInMainThread(complition: @escaping ()->Void){
         if let context = self.coreDataStack.mainContext {
-            self.coreDataStack.performSave(with: context)
+            self.coreDataStack.performSave(with: context) {
+                complition()
+            }
             return
         }
         print("context in saving operation wasn't created")

@@ -209,10 +209,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             userProfile.name = self.nameTextField.text
             userProfile.aboutInformation = self.aboutTextView.text
             userProfile.avatarsPath = self.profilePhoto.image?.jpegData(compressionQuality: 1.0)
-            StorageManager.singletone.storeDateInMainThread()
+            StorageManager.singletone.storeDateInMainThread {
+                self.present(self.okAllert, animated: true)
+            }
         } else {
             print ("user profile wasn't insert in coredata or loaded")
         }
+        
     }
     private func loadDataByCDS() {
         self.userProfile = StorageManager.singletone.loadUserProfileInMainThread()
