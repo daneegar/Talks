@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User: UserProfile, Equatable{
+struct User: Equatable{
     static func == (lhs: User, rhs: User) -> Bool {
         return lhs.userID == rhs.userID
     }
@@ -19,10 +19,9 @@ class User: UserProfile, Equatable{
         self.userID = userID
         self.userName = userID
         self.chat = Chat(name: self.userName, date: Date(), onlineStatus: true, hasUnreadMessages: false)
-        super.init()
     }
     
-    required public init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }
 }

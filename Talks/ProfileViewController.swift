@@ -17,7 +17,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var activeField: UITextView?
     
     var userProfile: UserProfile?
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("UserProfile.plist")
+    
+    let coredata = CoreDataStack()
+ 
+    var UserProfileTemp: UserProfileStruct?
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("UserProfileStruct.plist")
     let defaults = UserDefaults.standard
     var dataStoreLoadDHandler: DataAsyncStoreProtocol?
     
@@ -61,11 +65,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func doneButtonPressed (_ sender: Any){
+        if let userProfile = self.userProfile{
+            userProfile.name = self.nameTextField.text
+            userProfile.aboutInformation = self.aboutTextView.text
+            userProfile.avatarsPath = self.profilePhoto.image?.jpegData(compressionQuality: 1.0)
+            StorageManager.singletone.storeDateInMainThread()
+        } else {
+            print ("user profile wasn't insert in coredata or loaded")
+        }
         self.handleGesture()
     }
     
     @IBAction func gcdButtonPressed(_ sender: Any) {
-        
         self.dataStoreLoadDHandler = DataStoreGCD()
         self.saveData()
     }
@@ -80,12 +91,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     override func viewDidLoad() {
         self.contentScrollView.flashScrollIndicators()
         self.setupDelegates()
-        self.threadLogger.printStep()
+        
         self.disableEditingMode()
         self.addObserveToKeyboard()
         self.setupActivityIndicator()
         self.setupAllerts()
-        self.loadData()
+        self.userProfile = StorageManager.singletone.loadUserProfileInMainThread()
+        if self.userProfile != nil {
+            self.aboutTextView.text = userProfile?.aboutInformation
+            self.nameTextField.text = userProfile?.name
+            self.profilePhoto.image = UIImage.init(data: userProfile!.avatarsPath!)?.fixedOrientation()
+        } else {
+            print("userProfile dosn't loaded")
+        }
+        self.threadLogger.printStep()
         
         super.viewDidLoad()
         print("The button frame is: \(self.buttonEdit.frame)")
@@ -164,13 +183,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func loadData(){
         self.activityIndicator.startAnimating()
         self.dataStoreLoadDHandler = DataStoreGCD()
-        self.dataStoreLoadDHandler?.loadData(inPath: self.dataFilePath!, forModel: self.userProfile, completion: { (data, error) in
+        self.dataStoreLoadDHandler?.loadData(inPath: self.dataFilePath!, forModel: self.UserProfileTemp, completion: { (data, error) in
             DispatchQueue.main.async {
-                if let userProfile = data {
-                    self.userProfile = userProfile
-                    self.profilePhoto.image = self.userProfile?.avatar
-                    self.aboutTextView.text = self.userProfile?.aboutInformation
-                    self.nameTextField.text = self.userProfile?.name
+                if let userProfileStruct = data {
+                    self.UserProfileTemp = userProfileStruct
+                    self.profilePhoto.image = self.UserProfileTemp?.avatar
+                    self.aboutTextView.text = self.UserProfileTemp?.aboutInformation
+                    self.nameTextField.text = self.UserProfileTemp?.name
                 }
                 self.activityIndicator.stopAnimating()
                 self.saveButtons(makeEnable: false)
@@ -180,10 +199,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     func saveData()
     {
-        self.userProfile = UserProfile(name: self.nameTextField.text!, aboutInfirmation: self.aboutTextView.text, avatar: self.profilePhoto.image!)
+        self.UserProfileTemp = UserProfileStruct(name: self.nameTextField.text!, aboutInfirmation: self.aboutTextView.text, avatar: self.profilePhoto.image!)
         self.activityIndicator.startAnimating()
         self.saveButtons(makeEnable: false)
-        self.dataStoreLoadDHandler?.storeData(data: self.userProfile, inPath: self.dataFilePath!, forKey: "UserProfile.plist") { (error) in
+        self.dataStoreLoadDHandler?.storeData(data: self.UserProfileTemp, inPath: self.dataFilePath!, forKey: "UserProfileStruct.plist") { (error) in
             DispatchQueue.main.async{
                 if let error = error {
                     print(error)
@@ -228,10 +247,10 @@ extension ProfileViewController: UITextFieldDelegate, UITextViewDelegate
             self.contentView.layoutIfNeeded()
         }, completion: nil)
     }
-    //MARK: - проверка что пользователь что-то изменил. Я реализовал хранение данных через модель UserProfile и ума не приложу как вносить изменения только изменившегося свойства
+    //MARK: - проверка что пользователь что-то изменил. Я реализовал хранение данных через модель UserProfileStruct и ума не приложу как вносить изменения только изменившегося свойства
     // если я использую протокол codeble у меня не получилось переопределить метод encode что бы изменять только часть данных.
     func checkProfileIsEdited(){
-        if (self.userProfile?.avatar != self.profilePhoto.image || self.userProfile?.name != self.nameTextField.text || self.userProfile?.aboutInformation != self.aboutTextView.text) {
+        if (self.UserProfileTemp?.avatar != self.profilePhoto.image || self.UserProfileTemp?.name != self.nameTextField.text || self.UserProfileTemp?.aboutInformation != self.aboutTextView.text) {
             self.saveButtons(makeEnable: true)
         } else {
             self.saveButtons(makeEnable: false)

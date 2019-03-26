@@ -7,16 +7,18 @@
 //
 
 import Foundation
+import CoreData
 
-class Message: MessageCellConfiguration, Encodable, Decodable {
+
+class Message: MessageCellConfiguration, Encodable, Decodable{
     var text: String?
-    let typeOfMessage: MessageType
-    var dateOfPublic: Date?
+    var typeOfMessage: MessageType
+    var createTimeStamp: Date?
     var dateOfWasReaded: Date?
     var dateOfWasEdited: Date?
-    var nextMessage: Message?
+    //var nextMessage: Message?
     var isUnReaded: Bool?
-    let messageID: String?
+    var messageID: String?
     
     private enum CodingKeys: String, CodingKey {
         case text
@@ -27,9 +29,9 @@ class Message: MessageCellConfiguration, Encodable, Decodable {
         self.messageID = messageID
         self.text = text
         self.typeOfMessage = typeOfMessage
-        self.dateOfPublic = Date()
+        self.createTimeStamp = Date()
     }
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         if let text = self.text {
             try container.encode(text, forKey: CodingKeys.text)
@@ -38,12 +40,12 @@ class Message: MessageCellConfiguration, Encodable, Decodable {
         }
         try container.encode(messageID, forKey:CodingKeys.messageID)
     }
-    public required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.typeOfMessage = .inComingMessage
         self.text = try container.decode(String.self, forKey: CodingKeys.text)
         self.messageID = try container.decode(String.self, forKey: CodingKeys.messageID)
-        self.dateOfPublic = Date()
+        self.createTimeStamp = Date()
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol ConversationCellConfiguration: class {
     var name : String? {get set}
@@ -49,4 +50,11 @@ protocol  CommunicatorDelegate: class {
 protocol CommunicatorViewControllerDelegate: class {
     func communicationManagerFoundNewUser()
     func communicationManagerRecieveMessage(forUser: User)
+}
+
+protocol StorageManagedObject {
+    func insert(in context: NSManagedObjectContext) -> StorageManagedObject?
+    func findOrInsert(in context: NSManagedObjectContext) -> StorageManagedObject?
+    func fetchRequest(model: NSManagedObjectModel) ->NSFetchRequest <NSManagedObject>?
+    func find(in context: NSManagedObjectContext) -> StorageManagedObject? 
 }

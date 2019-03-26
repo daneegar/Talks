@@ -60,7 +60,7 @@ class ConversationListViewController: UIViewController {
     func configCommunicator(){
         let loader = DataStoreGCD()
         let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("UserProfile.plist")
-        let userProfile = UserProfile()
+        let userProfile = UserProfileStruct()
         loader.loadData(inPath: dataFilePath!, forModel: userProfile, completion: { (data, error) in
             DispatchQueue.main.async {
                 if let userProfile = data {

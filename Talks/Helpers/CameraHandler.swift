@@ -11,7 +11,7 @@ import UIKit
 
 
 class CameraHandler: NSObject{
-    fileprivate var currentVC: UIViewController!
+    fileprivate weak var currentVC: UIViewController!
     
     func camera() {
         if UIImagePickerController.isSourceTypeAvailable(.camera){

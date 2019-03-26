@@ -11,7 +11,7 @@ import UIKit
 
 
 
-class UserProfile: Codable
+struct UserProfileStruct: Codable
 {
     var name: String?
     var aboutInformation: String?
@@ -33,7 +33,7 @@ class UserProfile: Codable
         self.aboutInformation = aboutInfirmation
         self.avatar = avatar
     }
-    required public init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let data = try container.decode(Data.self, forKey: CodingKeys.avatar)
         guard let image = UIImage(data: data) else {
@@ -52,4 +52,6 @@ class UserProfile: Codable
     }
     
 }
+
+
 
