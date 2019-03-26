@@ -60,19 +60,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func editingModeButtonPressed(_ sender: Any){
+        if self.editingModeOn {
+            saveDataByCDS()
+        }
         self.switchEditingMode()
-        
     }
     
     @IBAction func doneButtonPressed (_ sender: Any){
-        if let userProfile = self.userProfile{
-            userProfile.name = self.nameTextField.text
-            userProfile.aboutInformation = self.aboutTextView.text
-            userProfile.avatarsPath = self.profilePhoto.image?.jpegData(compressionQuality: 1.0)
-            StorageManager.singletone.storeDateInMainThread()
-        } else {
-            print ("user profile wasn't insert in coredata or loaded")
-        }
         self.handleGesture()
     }
     
@@ -96,15 +90,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.addObserveToKeyboard()
         self.setupActivityIndicator()
         self.setupAllerts()
-        self.userProfile = StorageManager.singletone.loadUserProfileInMainThread()
-        if self.userProfile != nil {
-            self.aboutTextView.text = userProfile?.aboutInformation
-            self.nameTextField.text = userProfile?.name
-            self.profilePhoto.image = UIImage.init(data: userProfile!.avatarsPath!)?.fixedOrientation()
-        } else {
-            print("userProfile dosn't loaded")
-        }
         self.threadLogger.printStep()
+        self.loadDataByCDS()
         
         super.viewDidLoad()
         print("The button frame is: \(self.buttonEdit.frame)")
@@ -149,6 +136,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.buttonEdit.layer.cornerRadius = 10
         self.buttonGCD.layer.cornerRadius = 10
         self.buttonOperation.layer.cornerRadius = 10
+        self.buttonEdit.titleLabel?.text = !self.editingModeOn ? "Сохранить" : "Редактировать"
     }
     private func setupProfilePhotoImageAndAddButton() {
         self.profilePhoto.layer.cornerRadius = 40
@@ -180,7 +168,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     //MARK: - save load data methods
-    func loadData(){
+    private func loadData(){
         self.activityIndicator.startAnimating()
         self.dataStoreLoadDHandler = DataStoreGCD()
         self.dataStoreLoadDHandler?.loadData(inPath: self.dataFilePath!, forModel: self.UserProfileTemp, completion: { (data, error) in
@@ -197,7 +185,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         })
     }
     
-    func saveData()
+    private func saveData()
     {
         self.UserProfileTemp = UserProfileStruct(name: self.nameTextField.text!, aboutInfirmation: self.aboutTextView.text, avatar: self.profilePhoto.image!)
         self.activityIndicator.startAnimating()
@@ -213,6 +201,27 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.activityIndicator.stopAnimating()
                 self.present(self.okAllert, animated: true)
             }
+        }
+    }
+    
+    private func saveDataByCDS(){
+        if let userProfile = self.userProfile{
+            userProfile.name = self.nameTextField.text
+            userProfile.aboutInformation = self.aboutTextView.text
+            userProfile.avatarsPath = self.profilePhoto.image?.jpegData(compressionQuality: 1.0)
+            StorageManager.singletone.storeDateInMainThread()
+        } else {
+            print ("user profile wasn't insert in coredata or loaded")
+        }
+    }
+    private func loadDataByCDS() {
+        self.userProfile = StorageManager.singletone.loadUserProfileInMainThread()
+        if self.userProfile != nil {
+            self.aboutTextView.text = userProfile?.aboutInformation
+            self.nameTextField.text = userProfile?.name
+            self.profilePhoto.image = UIImage.init(data: userProfile!.avatarsPath!)?.fixedOrientation()
+        } else {
+            print("userProfile dosn't loaded")
         }
     }
     
@@ -244,11 +253,16 @@ extension ProfileViewController: UITextFieldDelegate, UITextViewDelegate
             self.nameTextField.isEnabled = self.editingModeOn
             self.nameTextField.textColor = self.editingModeOn ? .black : UIColor(rgb: 0xD3D3D3, alpha: 1.0)
             self.iconAddPhoto.isHidden = !self.editingModeOn
+            if self.editingModeOn {
+                self.buttonEdit.setTitle("Сохранить", for: .normal)
+            } else {
+                self.buttonEdit.setTitle("Редактировать", for: .normal)
+            }
             self.contentView.layoutIfNeeded()
         }, completion: nil)
+        
     }
-    //MARK: - проверка что пользователь что-то изменил. Я реализовал хранение данных через модель UserProfileStruct и ума не приложу как вносить изменения только изменившегося свойства
-    // если я использую протокол codeble у меня не получилось переопределить метод encode что бы изменять только часть данных.
+    
     func checkProfileIsEdited(){
         if (self.UserProfileTemp?.avatar != self.profilePhoto.image || self.UserProfileTemp?.name != self.nameTextField.text || self.UserProfileTemp?.aboutInformation != self.aboutTextView.text) {
             self.saveButtons(makeEnable: true)
