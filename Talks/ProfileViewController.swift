@@ -92,6 +92,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.setupAllerts()
         self.threadLogger.printStep()
         self.loadDataByCDS()
+        self.saveButtons(makeEnable: false)
         
         super.viewDidLoad()
         print("The button frame is: \(self.buttonEdit.frame)")
@@ -234,11 +235,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 extension ProfileViewController: UITextFieldDelegate, UITextViewDelegate
 {
     func textViewDidChange(_ textView: UITextView) {
-        self.checkProfileIsEdited()
+        //self.checkProfileIsEdited()
     }
         
     @objc func textFieldDidChange(_ textField: UITextField) {
-        self.checkProfileIsEdited()
+        //self.checkProfileIsEdited()
     }
     
     func disableEditingMode(){
