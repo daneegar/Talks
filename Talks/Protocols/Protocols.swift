@@ -10,26 +10,25 @@ import Foundation
 import CoreData
 
 protocol ConversationCellConfiguration: class {
-    var name : String? {get set}
-    var message : [Message] {get set}
-    var date : Date? {get set}
-    var online : Bool {get set}
-    var hasUnreadMessages : Bool {get set}
+    var name: String? {get set}
+    var message: [Message] {get set}
+    var date: Date? {get set}
+    var online: Bool {get set}
+    var hasUnreadMessages: Bool {get set}
 }
 
 protocol MessageCellConfiguration: class {
-    var text : String? {get set}
+    var text: String? {get set}
 }
-
 
 protocol DataAsyncStoreProtocol {
-    func loadData <T: Codable> (inPath url: URL, forModel: T?, completion: @escaping (T?, String?)->Void)
-    func storeData <T: Codable> (data: T, inPath url: URL, forKey: String, completion: ((String?)->Void)?)
+    func loadData <T: Codable> (inPath url: URL, forModel: T?, completion: @escaping (T?, String?) -> Void)
+    func storeData <T: Codable> (data: T, inPath url: URL, forKey: String, completion: ((String?) -> Void)?)
 }
 
-
 protocol Communicator {
-    func sendMessage(string: Message, to userID: String, complitionHandler : ((_ success: Bool, _ error: Error?)->())?)
+    func sendMessage(string: Message, to userID: String,
+                     complitionHandler : ((_ success: Bool, _ error: Error?) -> Void)?)
     var delegate: CommunicatorDelegate? {get set}
     var online: Bool {get set}
 }
@@ -38,11 +37,11 @@ protocol  CommunicatorDelegate: class {
     //discovering
     func didFoundUser(userID: String, userName: String?)
     func didLostUser(userID: String)
-    
+
     //errors
-    func failedToStartBrowsingForUsers(error : Error)
-    func failedToStartAdvertising(error : Error)
-    
+    func failedToStartBrowsingForUsers(error: Error)
+    func failedToStartAdvertising(error: Error)
+
     //messages
     func didRecieveMessage(text: Message, fromUser: String, toUser: String)
 }
@@ -55,6 +54,6 @@ protocol CommunicatorViewControllerDelegate: class {
 protocol StorageManagedObject {
     func insert(in context: NSManagedObjectContext) -> StorageManagedObject?
     func findOrInsert(in context: NSManagedObjectContext) -> StorageManagedObject?
-    func fetchRequest(model: NSManagedObjectModel) ->NSFetchRequest <NSManagedObject>?
-    func find(in context: NSManagedObjectContext) -> StorageManagedObject? 
+    func fetchRequest(model: NSManagedObjectModel) -> NSFetchRequest <NSManagedObject>?
+    func find(in context: NSManagedObjectContext) -> StorageManagedObject?
 }

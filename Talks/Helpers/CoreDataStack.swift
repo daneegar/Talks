@@ -10,43 +10,46 @@ import Foundation
 import CoreData
 
 class CoreDataStack {
-    
+
     private var storeUrl: URL {
         let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         return documentsUrl.appendingPathComponent("MyStore.sqlite")
     }
-    
+
     private let dataModelName = "Talks"
     private let dataModelExtension = "momd"
-    
+
     private lazy var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: self.dataModelName, withExtension: self.dataModelExtension)!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
-    
+
     private lazy var persitentSotreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         do {
-            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: self.storeUrl, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+                                               configurationName: nil,
+                                               at: self.storeUrl,
+                                               options: nil)
         } catch {
             assert(false, "Error adding store: \(error)")
         }
         return coordinator
     }()
-    
+
     lazy public var masterContext: NSManagedObjectContext? = {
         var masterContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         masterContext.persistentStoreCoordinator = self.persitentSotreCoordinator
         masterContext.mergePolicy = NSMergePolicy.overwrite
         return masterContext
     }()
-    
+
     lazy public var mainContext: NSManagedObjectContext? = {
         let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.parent = self.masterContext
         context.mergePolicy = NSMergePolicy.overwrite
         return context
-        
+
     }()
     lazy var saveContext: NSManagedObjectContext? = {
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
@@ -55,9 +58,9 @@ class CoreDataStack {
         context.undoManager = nil
         return context
     }()
-    
+
     typealias SaveComplition = () -> Void
-    
+
     func performSave(with context: NSManagedObjectContext, complition: SaveComplition? = nil) {
         context.perform {
             guard context.hasChanges else {
@@ -77,5 +80,3 @@ class CoreDataStack {
         }
     }
 }
-
-

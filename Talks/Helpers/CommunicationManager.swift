@@ -9,47 +9,46 @@
 import Foundation
 
 class CommunicationManager: CommunicatorDelegate {
-    
-    
-    init(delegate: CommunicatorViewControllerDelegate, peerID: String){
+
+    init(delegate: CommunicatorViewControllerDelegate, peerID: String) {
         self.communicator = MultipeerCommunicator(peerID)
         self.delegate = delegate
         self.communicator.delegate = self
     }
-    
-    var delegate: CommunicatorViewControllerDelegate
-    
+
+    weak var delegate: CommunicatorViewControllerDelegate!
+
     var listOfPeers: [User]  = []
-    
+
     let communicator: MultipeerCommunicator
-    
+
     func didFoundUser(userID: String, userName: String?) {
         var name: String
-        if let _ = userName {
-            name = userName!
+        if let userName = userName {
+            name = userName
         } else {
             name = "default"
         }
         self.listOfPeers.append(User(userID: userID, userName: name, isOnline: true))
         self.delegate.communicationManagerFoundNewUser()
     }
-    
+
     func didLostUser(userID: String) {
         let tempUser = User(userID: userID, userName: userID, isOnline: true)
-        if let index = listOfPeers.index(of: tempUser){
+        if let index = listOfPeers.index(of: tempUser) {
             listOfPeers.remove(at: index)
         }
         self.delegate.communicationManagerFoundNewUser()
     }
-    
+
     func failedToStartBrowsingForUsers(error: Error) {
-        
+
     }
-    
+
     func failedToStartAdvertising(error: Error) {
-        
+
     }
-    
+
     func didRecieveMessage(text: Message, fromUser: String, toUser: String) {
         let tempUser = User(userID: fromUser, userName: fromUser, isOnline: true)
         if let index = listOfPeers.index(of: tempUser) {
@@ -57,10 +56,10 @@ class CommunicationManager: CommunicatorDelegate {
             self.delegate.communicationManagerRecieveMessage(forUser: listOfPeers[index])
         }
     }
-    
-    func findUser(byDisplayName userID: String) -> User?{
+
+    func findUser(byDisplayName userID: String) -> User? {
         let tempUser = User(userID: userID, userName: userID, isOnline: true)
-        if let index = listOfPeers.index(of: tempUser){
+        if let index = listOfPeers.index(of: tempUser) {
             return listOfPeers[index]
         }
         return nil

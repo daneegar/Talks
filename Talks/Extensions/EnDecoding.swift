@@ -17,7 +17,7 @@ enum ImageEncodingQuality: CGFloat {
 }
 
 extension KeyedEncodingContainer {
-    
+
     mutating func encode(_ value: UIImage,
                          forKey key: KeyedEncodingContainer.Key,
                          quality: ImageEncodingQuality = .png) throws {
@@ -29,11 +29,11 @@ extension KeyedEncodingContainer {
         }
         try encode(imageData, forKey: key)
     }
-    
+
 }
 
 extension KeyedDecodingContainer {
-    
+
     public func decode(_ type: UIImage.Type, forKey key: KeyedDecodingContainer.Key) throws -> UIImage {
         let imageData = try decode(Data.self, forKey: key)
         if let image = UIImage(data: imageData) {
@@ -43,5 +43,5 @@ extension KeyedDecodingContainer {
         }
         return UIImage()
     }
-    
+
 }

@@ -8,14 +8,15 @@
 
 import Foundation
 
-class DataStoreOperation: Operation, DataAsyncStoreProtocol
-{
+class DataStoreOperation: Operation, DataAsyncStoreProtocol {
     let encoder = PropertyListEncoder()
     let decoder = PropertyListDecoder()
     private let operationQueue = OperationQueue()
-    
-    func loadData<T>(inPath url: URL, forModel: T?, completion: @escaping (T?, String?) -> Void) where T : Decodable, T : Encodable {
-        if let data = try? Data(contentsOf: url){
+
+    func loadData<T>(inPath url: URL,
+                     forModel: T?,
+                     completion: @escaping (T?, String?) -> Void) where T: Codable {
+        if let data = try? Data(contentsOf: url) {
             var errorMessage: String?
             let operationQueue = OperationQueue.main
             operationQueue.addOperation {
@@ -30,8 +31,11 @@ class DataStoreOperation: Operation, DataAsyncStoreProtocol
             }
         }
     }
-    
-    func storeData<T>(data: T, inPath url: URL, forKey: String, completion: ((String?) -> Void)?) where T : Decodable, T : Encodable {
+
+    func storeData<T>(data: T,
+                      inPath url: URL,
+                      forKey: String,
+                      completion: ((String?) -> Void)?) where T: Codable {
         print("Using Operations")
         var errorMessage: String?
         let operationQueue = OperationQueue.main
@@ -44,9 +48,7 @@ class DataStoreOperation: Operation, DataAsyncStoreProtocol
                 }
                 completion?(errorMessage)
         }
-        
+
     }
-    
-    
-    
+
 }

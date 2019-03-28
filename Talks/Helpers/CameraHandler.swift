@@ -9,12 +9,11 @@
 import Foundation
 import UIKit
 
-
-class CameraHandler: NSObject{
+class CameraHandler: NSObject {
     fileprivate weak var currentVC: UIViewController!
-    
+
     func camera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let myPickerController = UIImagePickerController()
             myPickerController.delegate = self
             myPickerController.sourceType = .camera
@@ -25,9 +24,9 @@ class CameraHandler: NSObject{
             self.currentVC.present(alert, animated: true)
         }
     }
-    
+
     func photoLibrary() {
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             let myPickerController = UIImagePickerController()
             myPickerController.delegate = self
             myPickerController.sourceType = .photoLibrary
@@ -38,33 +37,31 @@ class CameraHandler: NSObject{
             self.currentVC.present(alert, animated: true)
         }
     }
-    
-    func showActionSheet(vc: UIViewController) {
-        currentVC = vc
+
+    func showActionSheet(vController: UIViewController) {
+        currentVC = vController
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (alert:UIAlertAction!) -> Void in
+
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (_:UIAlertAction!) -> Void in
             self.camera()
         }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (alert:UIAlertAction!) -> Void in
+        actionSheet.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { (_:UIAlertAction!) -> Void in
             self.photoLibrary()
         }))
-        
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        vc.present(actionSheet, animated: true, completion: nil)
+        vController.present(actionSheet, animated: true, completion: nil)
     }
-    
+
 }
 
+extension CameraHandler: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-extension CameraHandler: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         currentVC.dismiss(animated: true, completion: nil)
     }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         guard let selectedImage = info[.originalImage] as? UIImage else {
             print("Image not found!")
             return
@@ -76,5 +73,5 @@ extension CameraHandler: UIImagePickerControllerDelegate, UINavigationController
         viewControllerAsTakingImage.pickTaken(image: selectedImage)
         currentVC.dismiss(animated: true, completion: nil)
     }
-    
+
 }

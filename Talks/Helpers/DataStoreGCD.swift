@@ -8,18 +8,14 @@
 
 import Foundation
 
+class DataStoreGCD: DataAsyncStoreProtocol {
 
-class DataStoreGCD: DataAsyncStoreProtocol{
-    
-    
-    
     let encoder = PropertyListEncoder()
     let decoder = PropertyListDecoder()
-    
+
     let serialQueue = DispatchQueue(label: "concurrency.DataStoredGCD.serial")
-    
-    
-    func storeData <T:Codable> (data: T, inPath url: URL, forKey: String, completion: ((String?)->Void)?){
+
+    func storeData <T: Codable> (data: T, inPath url: URL, forKey: String, completion: ((String?) -> Void)?) {
         print("Using GCD")
         var errorMessage: String?
         serialQueue.async {
@@ -33,10 +29,8 @@ class DataStoreGCD: DataAsyncStoreProtocol{
         }
     }
 
-    
-    
-    func loadData <T: Codable> (inPath url: URL, forModel: T?, completion: @escaping (T?, String?)->Void){
-        if let data = try? Data(contentsOf: url){
+    func loadData <T: Codable> (inPath url: URL, forModel: T?, completion: @escaping (T?, String?) -> Void) {
+        if let data = try? Data(contentsOf: url) {
             var errorMessage: String?
             serialQueue.async {
                 do {
@@ -48,13 +42,9 @@ class DataStoreGCD: DataAsyncStoreProtocol{
                 }
                 return
             }
-        }
-        else {
+        } else {
             completion(nil, "There is know data yet")
         }
     }
-    
 
-    
-    
 }

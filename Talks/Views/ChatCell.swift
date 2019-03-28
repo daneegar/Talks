@@ -9,18 +9,16 @@
 import UIKit
 
 class ChatCell: UITableViewCell {
-    
+
     var message: Message?
     var name: String?
     var date: Date?
-    //TODO: - you should to do smth with its default constants.
     var online: Bool = false
     var hasUnreadMessages: Bool = false
-    
+
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lastText: UILabel!
     @IBOutlet weak var lastDateLabel: UILabel!
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +38,7 @@ class ChatCell: UITableViewCell {
         self.hasUnreadMessages = instance.chat.hasUnreadMessages
         self.configCellView()
     }
-    
+
     func configCellView() {
         self.nameLabel.text = name
         if let message = self.message {
@@ -49,15 +47,15 @@ class ChatCell: UITableViewCell {
             self.lastText.text = "No messages yet"
             self.lastText.font = UIFont.boldSystemFont(ofSize: 16.0)
         }
-        
+
         if self.hasUnreadMessages {
             self.lastText.font = UIFont.boldSystemFont(ofSize: 16.0)
         }
-        
+
         let datesHandler = DatesHandler()
-        
-        self.lastDateLabel.text = datesHandler.stringWithChoisedFromatter(withDate: self.date!, howManyDaysMeansIsRecent: 1)
+        self.lastDateLabel.text = datesHandler.stringWithChoisedFromatter(withDate: self.date!,
+                                                                          howManyDaysMeansIsRecent: 1)
         self.backgroundColor = self.online ? UIColor(rgb: 0xDBE5C6, alpha: 0.3) : UIColor.white
     }
-    
+
 }

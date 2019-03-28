@@ -20,7 +20,7 @@ class Chat: ConversationCellConfiguration {
         self.online = onlineStatus
         self.hasUnreadMessages = hasUnreadMessages
     }
-    func addMessage(message: Message){
+    func addMessage(message: Message) {
         self.message.append(message)
 //        let temp = message
 //        message.nextMessage = self.message

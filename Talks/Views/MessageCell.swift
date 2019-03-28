@@ -8,16 +8,11 @@
 
 import UIKit
 
+class MessageCell: UITableViewCell {
 
-
-
-
-class MessageCell: UITableViewCell{
-    
     @IBOutlet weak var labelOfIncomingMessage: UILabel!
     @IBOutlet weak var labelOfOutGoingMessage: UILabel!
-    
-    
+
     var textToShow: String? = ""
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +23,7 @@ class MessageCell: UITableViewCell{
 
         // Configure the view for the selected state
     }
-    
+
     func setupCell(whithText text: String?, andTypeOf type: MessageType) {
         switch type {
         case .inComingMessage:
@@ -37,5 +32,5 @@ class MessageCell: UITableViewCell{
             self.labelOfOutGoingMessage.text = text
         }
     }
-    
+
 }

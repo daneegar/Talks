@@ -14,7 +14,8 @@ extension UserProfile {
     static func insert(in context: NSManagedObjectContext) -> UserProfile? {
         var userProfile: UserProfile?
         context.performAndWait {
-            userProfile = NSEntityDescription.insertNewObject(forEntityName: "UserProfile", into: context) as? UserProfile
+            userProfile = NSEntityDescription.insertNewObject(forEntityName: "UserProfile",
+                                                              into: context) as? UserProfile
         }
         return userProfile
     }
@@ -22,14 +23,14 @@ extension UserProfile {
         var userProfile: UserProfile?
         context.performAndWait {
             userProfile = find(in: context)
-            
+
             if userProfile == nil {
                 userProfile = UserProfile.insert(in: context)
             }
         }
         return userProfile
     }
-    
+
     static func fetchRequest(model: NSManagedObjectModel) ->NSFetchRequest<UserProfile>? {
         let temp = "UserProfile"
         guard let fetchRequest = model.fetchRequestTemplate(forName: temp) as? NSFetchRequest <UserProfile> else {
@@ -38,7 +39,7 @@ extension UserProfile {
         }
         return fetchRequest
     }
-    
+
     static func find(in context: NSManagedObjectContext) -> UserProfile? {
         guard let model = context.persistentStoreCoordinator?.managedObjectModel else {
             print("Problem with modeling")
@@ -53,13 +54,12 @@ extension UserProfile {
             do {
                 let result = try context.fetch(fetchRequest)
                 userProfile = result.first
-                
+
             } catch {
                 print("FUCK")
             }
         }
         return userProfile
     }
-    
-}
 
+}

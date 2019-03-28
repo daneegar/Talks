@@ -9,8 +9,7 @@
 import Foundation
 import CoreData
 
-
-class Message: MessageCellConfiguration, Encodable, Decodable{
+class Message: MessageCellConfiguration, Encodable, Decodable {
     var text: String?
     var typeOfMessage: MessageType
     var createTimeStamp: Date?
@@ -19,7 +18,7 @@ class Message: MessageCellConfiguration, Encodable, Decodable{
     //var nextMessage: Message?
     var isUnReaded: Bool?
     var messageID: String?
-    
+
     private enum CodingKeys: String, CodingKey {
         case text
         case messageID
@@ -38,7 +37,7 @@ class Message: MessageCellConfiguration, Encodable, Decodable{
         } else {
             try container.encode("emptyMessage", forKey: CodingKeys.text)
         }
-        try container.encode(messageID, forKey:CodingKeys.messageID)
+        try container.encode(messageID, forKey: CodingKeys.messageID)
     }
     required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -48,4 +47,3 @@ class Message: MessageCellConfiguration, Encodable, Decodable{
         self.createTimeStamp = Date()
     }
 }
-

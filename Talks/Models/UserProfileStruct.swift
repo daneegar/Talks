@@ -9,26 +9,23 @@
 import Foundation
 import UIKit
 
-
-
-struct UserProfileStruct: Codable
-{
+struct UserProfileStruct: Codable {
     var name: String?
     var aboutInformation: String?
     var avatar: UIImage?
-    
+
     private enum CodingKeys: String, CodingKey {
         case name
         case aboutInformation
         case avatar
     }
- 
-    init (){
+
+    init () {
         self.name = nil
         self.aboutInformation = nil
         self.avatar = nil
     }
-    init(name: String, aboutInfirmation: String, avatar: UIImage){
+    init(name: String, aboutInfirmation: String, avatar: UIImage) {
         self.name = name
         self.aboutInformation = aboutInfirmation
         self.avatar = avatar
@@ -50,8 +47,5 @@ struct UserProfileStruct: Codable
         try container.encode(name, forKey: CodingKeys.name)
         try container.encode(aboutInformation, forKey: CodingKeys.aboutInformation)
     }
-    
+
 }
-
-
-

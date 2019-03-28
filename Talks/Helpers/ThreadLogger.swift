@@ -15,7 +15,7 @@ enum Threads: String {
 class ThreadLogger {
     private var lastStage: String?
     private let typeOfThread: Threads
-    private let states = ["application(_:didFinishLaunchingWithOptions:)":"InAcitve",
+    private let states = ["application(_:didFinishLaunchingWithOptions:)": "InAcitve",
                   "applicationDidBecomeActive": "Active",
                   "applicationWillResignActive": "InActive",
                   "applicationDidEnterBackground": "Background",
@@ -31,7 +31,7 @@ class ThreadLogger {
     init(typeOfThread: Threads) {
         self.typeOfThread = typeOfThread
     }
-    
+
     func printStep(byFunction function: String = #function) {
         #if DEBUG
         let method = self.states[function]
