@@ -55,20 +55,26 @@ class ConversationListViewController: UIViewController {
     }
 
     func configCommunicator() {
-        let loader = DataStoreGCD()
-        let dataFilePath = FileManager.default.urls(
-                                                for: .documentDirectory,
-                                                in: .userDomainMask).first?.appendingPathComponent("UserProfile.plist")
-        let userProfile = UserProfileStruct()
-        loader.loadData(inPath: dataFilePath!, forModel: userProfile, completion: { (data, _) in
-            DispatchQueue.main.async {
-                if let userProfile = data {
-                    self.communicator = CommunicationManager(delegate: self, peerID: userProfile.name!)
-                } else {
-                    self.communicator = CommunicationManager(delegate: self, peerID: "default")
-                }
-            }
-        })
+        let userProfile = StorageManager.singletone.loadUserProfileInMainThread()
+        if let name = userProfile?.name {
+            self.communicator = CommunicationManager(delegate: self, peerID: name)
+        } else {
+            self.communicator = CommunicationManager(delegate: self, peerID: "default")
+        }
+//        let loader = DataStoreGCD()
+//        let dataFilePath = FileManager.default.urls(
+//                                                for: .documentDirectory,
+//                                                in: .userDomainMask).first?.appendingPathComponent("UserProfile.plist")
+//        let userProfile = UserProfileStruct()
+//        loader.loadData(inPath: dataFilePath!, forModel: userProfile, completion: { (data, _) in
+//            DispatchQueue.main.async {
+//                if let userProfile = data {
+//                    self.communicator = CommunicationManager(delegate: self, peerID: userProfile.name!)
+//                } else {
+//                    self.communicator = CommunicationManager(delegate: self, peerID: "default")
+//                }
+//            }
+//        })
     }
 
 }

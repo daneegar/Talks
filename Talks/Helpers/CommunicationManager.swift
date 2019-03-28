@@ -24,8 +24,8 @@ class CommunicationManager: CommunicatorDelegate {
 
     func didFoundUser(userID: String, userName: String?) {
         var name: String
-        if let userName = userName {
-            name = userName
+        if let nameForSet = userName {
+            name = nameForSet
         } else {
             name = "default"
         }
