@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData.NSFetchedResultsController
 
 class ConversationListViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class ConversationListViewController: UIViewController {
 
     @IBOutlet weak var tableViewOfChats: UITableView!
     var listOfChats: [Chat] = []
+    var frc: NSFetchedResultsController<User>?
     var communicator: CommunicationManager?
     @IBAction func toggleSwitch(_ sender: Any) {
         communicator?.communicator.online = isBrowserMode.isOn
@@ -41,11 +43,7 @@ class ConversationListViewController: UIViewController {
         if segue.identifier == "toChat" {
             guard let selectedIndexPath = self.tableViewOfChats.indexPathForSelectedRow else {return}
             if let destinataion = segue.destination as? ConversationViewController {
-                if selectedIndexPath.row > (self.communicator?.listOfPeers.count)! {return}
-                if let selectedUserID = communicator?.listOfPeers[selectedIndexPath.row] {
-                    destinataion.userID = selectedUserID
-                    destinataion.communicator = self.communicator
-                } else {return}
+                destinataion.userID = frc?.object(at: selectedIndexPath)
             }
         }
     }
@@ -55,26 +53,18 @@ class ConversationListViewController: UIViewController {
     }
 
     func configCommunicator() {
-        let userProfile = StorageManager.singletone.loadUserProfileInMainThread()
+        let userProfile = StorageManager.singleton.findOrInsert(in: StorageManager.singleton.coreDataStack.mainContext!, aModel: User.self)
         if let name = userProfile?.name {
-            self.communicator = CommunicationManager(delegate: self, peerID: name)
+            self.communicator = CommunicationManager(delegate: self, fetchResultDelegate: self, peerID: name)
         } else {
-            self.communicator = CommunicationManager(delegate: self, peerID: "default")
+            self.communicator = CommunicationManager(delegate: self, fetchResultDelegate: self, peerID: "default")
         }
-//        let loader = DataStoreGCD()
-//        let dataFilePath = FileManager.default.urls(
-//                                                for: .documentDirectory,
-//                                                in: .userDomainMask).first?.appendingPathComponent("UserProfile.plist")
-//        let userProfile = UserProfileStruct()
-//        loader.loadData(inPath: dataFilePath!, forModel: userProfile, completion: { (data, _) in
-//            DispatchQueue.main.async {
-//                if let userProfile = data {
-//                    self.communicator = CommunicationManager(delegate: self, peerID: userProfile.name!)
-//                } else {
-//                    self.communicator = CommunicationManager(delegate: self, peerID: "default")
-//                }
-//            }
-//        })
+        self.frc = RequestAndFetchingHandler.frcForUsers(delegate: self)
+        do {
+            try frc?.performFetch()
+        } catch {
+            print("perform Fetching FRC done with errors")
+        }
     }
 
 }
@@ -82,8 +72,11 @@ class ConversationListViewController: UIViewController {
 // MARK: - TableView methods
 extension ConversationListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let counted = self.communicator?.listOfPeers.count else {return 0}
-        return counted
+        guard let secitions = self.frc?.sections else {
+            fatalError("No sections in fetchedResultsController")
+        }
+        let sectionInfo = secitions[section]
+        return sectionInfo.numberOfObjects
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -92,10 +85,9 @@ extension ConversationListViewController: UITableViewDelegate, UITableViewDataSo
             else {
                 return UITableViewCell()
              }
-        if indexPath.row > (self.communicator?.listOfPeers.count)! {return UITableViewCell()}
-        if (self.communicator?.listOfPeers.isEmpty)! {return UITableViewCell()}
-        if let peer = communicator?.listOfPeers[indexPath.row] {
-            cell.configProperies(withChatModel: peer)
+        if let user = self.frc?.object(at: indexPath) {
+            //print("user to table \(user)")
+            cell.configProperies(withChatModel: user)
         }
         cell.accessoryType = .disclosureIndicator
         return cell
@@ -129,5 +121,28 @@ extension ConversationListViewController: CommunicatorViewControllerDelegate {
             self.tableViewOfChats.reloadData()
         }
     }
+}
 
+extension ConversationListViewController: NSFetchedResultsControllerDelegate {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableViewOfChats.endUpdates()
+    }
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableViewOfChats.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            self.tableViewOfChats.insertRows(at: [newIndexPath!], with: .automatic)
+        case .move:
+            self.tableViewOfChats.deleteRows(at: [indexPath!], with: .automatic)
+            self.tableViewOfChats.insertRows(at: [newIndexPath!], with: .automatic)
+        case .update:
+            self.tableViewOfChats.reloadRows(at: [indexPath!], with: .automatic)
+        case .delete:
+            self.tableViewOfChats.deleteRows(at: [indexPath!], with: .automatic)
+        }
+    }
 }

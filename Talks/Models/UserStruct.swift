@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct User: Equatable {
-    static func == (lhs: User, rhs: User) -> Bool {
+struct UserStruct: Equatable {
+    static func == (lhs: UserStruct, rhs: UserStruct) -> Bool {
         return lhs.userID == rhs.userID
     }
     let userID: String

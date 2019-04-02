@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Message: MessageCellConfiguration, Encodable, Decodable {
+struct MessageStruct: MessageCellConfiguration, Encodable, Decodable {
     var text: String?
     var typeOfMessage: MessageType
     var createTimeStamp: Date?
@@ -39,7 +39,7 @@ class Message: MessageCellConfiguration, Encodable, Decodable {
         }
         try container.encode(messageID, forKey: CodingKeys.messageID)
     }
-    required public init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.typeOfMessage = .inComingMessage
         self.text = try container.decode(String.self, forKey: CodingKeys.text)

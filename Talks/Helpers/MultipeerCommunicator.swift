@@ -32,7 +32,7 @@ class MultipeerCommunicator: NSObject, Communicator {
             }
         }
     }
-    func sendMessage(string: Message, to userID: String, complitionHandler: ((Bool, Error?) -> Void)?) {
+    func sendMessage(string: MessageStruct, to userID: String, complitionHandler: ((Bool, Error?) -> Void)?) {
         let jsonObject = NSMutableDictionary()
         jsonObject.setValue("TextMessage", forKey: "eventType")
         jsonObject.setValue(self.generateMessageId(), forKey: "messageId")
@@ -113,7 +113,7 @@ extension MultipeerCommunicator: MCSessionDelegate {
         NSLog("%@", "didReceiveData: \(data)")
         let decoder = JSONDecoder()
         do {
-            let message = try decoder.decode(Message.self, from: data)
+            let message = try decoder.decode(MessageStruct.self, from: data)
             self.delegate?.didRecieveMessage(text: message, fromUser: peerID.displayName, toUser: "")
         } catch {print("date ComesLike Shit")}
 
@@ -146,14 +146,18 @@ extension MultipeerCommunicator: MCSessionDelegate {
         switch state {
         case MCSessionState.connected:
             print("Connected: \(peerID.displayName)")
-            self.delegate?.didFoundUser(userID: peerID.displayName, userName: peerID.displayName)
-
+            DispatchQueue.main.async {
+                self.delegate?.didFoundUser(userID: peerID.displayName, userName: peerID.displayName)
+            }
         case MCSessionState.connecting:
             print("Connecting: \(peerID.displayName)")
 
         case MCSessionState.notConnected:
             print("Not Connected: \(peerID.displayName)")
-            self.delegate?.didLostUser(userID: peerID.displayName)
+            DispatchQueue.main.async {
+                self.delegate?.didLostUser(userID: peerID.displayName)
+
+            }
 
         }
     }

@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ConversationViewController.swift"
-            timestampString = "575493614.397647"
+            timestampString = "575931062.795122"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "viewWillDisappear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ConversationViewController.swift"
-            timestampString = "575493614.397737"
+            timestampString = "575931062.795251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "communicationManagerRecieveMessage(forUser:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -184,11 +184,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ConversationViewController.swift"
-            timestampString = "575493614.397815"
+            timestampString = "575931062.795357"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "communicationManagerRecieveMessage(forUser:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -264,7 +264,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ProfileViewController.swift"
-            timestampString = "575493614.397956"
+            timestampString = "575931062.795559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "139"
@@ -280,7 +280,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ProfileViewController.swift"
-            timestampString = "575493614.398034"
+            timestampString = "575931062.795643"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -296,7 +296,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ProfileViewController.swift"
-            timestampString = "575493614.398101"
+            timestampString = "575931062.795722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "302"
@@ -312,7 +312,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ProfileViewController.swift"
-            timestampString = "575493614.398167"
+            timestampString = "575931062.795799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "305"
@@ -328,7 +328,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ProfileViewController.swift"
-            timestampString = "575493614.398232"
+            timestampString = "575931062.795877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
@@ -344,7 +344,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ProfileViewController.swift"
-            timestampString = "575493614.398309"
+            timestampString = "575931062.795952"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "172"
@@ -392,12 +392,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/CommunicationManager.swift"
-            timestampString = "575493614.3984129"
+            timestampString = "575931062.796079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "init(delegate:peerID:)"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "init(delegate:fetchResultDelegate:peerID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -408,12 +408,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/CommunicationManager.swift"
-            timestampString = "575493614.398844"
+            timestampString = "575931062.796185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "init(delegate:peerID:)"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "init(delegate:fetchResultDelegate:peerID:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -424,7 +424,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.3991621"
+            timestampString = "575931062.796289"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "15"
@@ -440,11 +440,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/CommunicationManager.swift"
-            timestampString = "575493614.399237"
+            timestampString = "575931062.796368"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
             landmarkName = "CommunicationManager"
             landmarkType = "3">
             <Locations>
@@ -487,40 +487,8 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Talks/ConversationViewController.swift"
-            timestampString = "575493614.399559"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "sendAnMessage()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Talks/Helpers/CommunicationManager.swift"
-            timestampString = "575493614.399632"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "didFoundUser(userID:userName:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.399928"
+            timestampString = "575931062.796466"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "108"
@@ -536,11 +504,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.4"
+            timestampString = "575931062.7965389"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162">
+            startingLineNumber = "166"
+            endingLineNumber = "166">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -550,7 +518,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.400063"
+            timestampString = "575931062.79661"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "109"
@@ -566,7 +534,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.4001271"
+            timestampString = "575931062.796681"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "106"
@@ -582,7 +550,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.4001991"
+            timestampString = "575931062.7967499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "107"
@@ -598,11 +566,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.400261"
+            timestampString = "575931062.796821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "session(_:peer:didChange:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -614,11 +582,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/CommunicationManager.swift"
-            timestampString = "575493614.400322"
+            timestampString = "575931062.796892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "didLostUser(userID:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -630,11 +598,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ConversationViewController.swift"
-            timestampString = "575493614.400631"
+            timestampString = "575931062.796984"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -646,11 +614,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ConversationViewController.swift"
-            timestampString = "575493614.400714"
+            timestampString = "575931062.7970769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "150"
+            endingLineNumber = "150"
             landmarkName = "keyboardWillHide(notification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -662,11 +630,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ConversationViewController.swift"
-            timestampString = "575493614.400779"
+            timestampString = "575931062.797169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "keyboardWillHide(notification:)"
             landmarkType = "7">
             <Locations>
@@ -710,7 +678,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.4008451"
+            timestampString = "575931062.797262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -726,11 +694,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.40091"
+            timestampString = "575931062.797334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162">
+            startingLineNumber = "166"
+            endingLineNumber = "166">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -740,11 +708,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.400972"
+            timestampString = "575931062.797408"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162">
+            startingLineNumber = "166"
+            endingLineNumber = "166">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -754,11 +722,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.401033"
+            timestampString = "575931062.797482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162">
+            startingLineNumber = "166"
+            endingLineNumber = "166">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -768,11 +736,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.401109"
+            timestampString = "575931062.797561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162">
+            startingLineNumber = "166"
+            endingLineNumber = "166">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -782,11 +750,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ConversationViewController.swift"
-            timestampString = "575493614.401179"
+            timestampString = "575931062.797639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "ConversationViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -798,7 +766,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.401242"
+            timestampString = "575931062.797742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -814,7 +782,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.401305"
+            timestampString = "575931062.797815"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "44"
@@ -830,11 +798,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ConversationListViewController.swift"
-            timestampString = "575493614.401368"
+            timestampString = "575931062.797892"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "toggleSwitch(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -846,7 +814,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/MultipeerCommunicator.swift"
-            timestampString = "575493614.401427"
+            timestampString = "575931062.798564"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "128"
@@ -862,12 +830,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/StorageManager.swift"
-            timestampString = "575325059.683305"
+            timestampString = "575931062.798648"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
             endingLineNumber = "25"
-            landmarkName = "loadUserProfileInMainThread()"
+            landmarkName = "loadOrInsertInMainThread(anEntiti:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -878,12 +846,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/StorageManager.swift"
-            timestampString = "575325059.683367"
+            timestampString = "575931062.798775"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "loadUserProfileInMainThread()"
+            landmarkName = "loadOrInsertInMainThread(anEntiti:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -894,12 +862,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/Helpers/StorageManager.swift"
-            timestampString = "575325059.683418"
+            timestampString = "575931062.798898"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
             endingLineNumber = "33"
-            landmarkName = "storeDateInMainThread(complition:)"
+            landmarkName = "storeDataInMainThread(complition:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -910,7 +878,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ProfileViewController.swift"
-            timestampString = "575493614.4015599"
+            timestampString = "575931062.799019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "213"
@@ -926,7 +894,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Talks/ProfileViewController.swift"
-            timestampString = "575493614.401646"
+            timestampString = "575931062.7990969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"

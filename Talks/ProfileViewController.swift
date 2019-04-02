@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, T
     let cameraHandler = CameraHandler()
     var keyboardHeight: CGFloat!
     var activeField: UITextView?
-    var userProfile: UserProfile?
+    var userProfile: User?
     let coredata = CoreDataStack()
     var userProfileTemp: UserProfileStruct?
     let dataFilePath = FileManager.default.urls(
@@ -83,7 +83,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, T
         self.saveButtons(makeEnable: false)
 
         super.viewDidLoad()
-        print("The button frame is: \(self.buttonEdit.frame)")
+        //print("The button frame is: \(self.buttonEdit.frame)")
         self.setupButtons()
         self.setupProfilePhotoImageAndAddButton()
     }
@@ -98,7 +98,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, T
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.threadLogger.printStep()
-        print("The button frame is: \(self.buttonEdit.frame)")
+        //print("The button frame is: \(self.buttonEdit.frame)")
         self.contentScrollView.flashScrollIndicators()
     }
     override func viewWillLayoutSubviews() {
@@ -200,7 +200,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, T
             userProfile.name = self.nameTextField.text
             userProfile.aboutInformation = self.aboutTextView.text
             userProfile.avatarsPath = self.profilePhoto.image?.jpegData(compressionQuality: 1.0)
-            StorageManager.singletone.storeDateInMainThread {
+            StorageManager.singleton.storeDataInMainThread {
                 self.present(self.okAllert, animated: true)
             }
         } else {
@@ -209,7 +209,7 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, T
 
     }
     private func loadDataByCDS() {
-        self.userProfile = StorageManager.singletone.loadUserProfileInMainThread()
+        self.userProfile = StorageManager.singleton.loadOrInsertInMainThread(anEntiti: User.self)
         if self.userProfile != nil {
             self.aboutTextView.text = userProfile?.aboutInformation
             self.nameTextField.text = userProfile?.name
@@ -220,7 +220,6 @@ class ProfileViewController: UIViewController, UINavigationControllerDelegate, T
             print("userProfile dosn't loaded")
         }
     }
-
 }
 // MARK: - editing mode handlers
 extension ProfileViewController: UITextFieldDelegate, UITextViewDelegate {

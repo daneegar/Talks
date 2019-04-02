@@ -11,13 +11,13 @@ import CoreData
 
 protocol ConversationCellConfiguration: class {
     var name: String? {get set}
-    var message: [Message] {get set}
+    var message: [MessageStruct] {get set}
     var date: Date? {get set}
     var online: Bool {get set}
     var hasUnreadMessages: Bool {get set}
 }
 
-protocol MessageCellConfiguration: class {
+protocol MessageCellConfiguration {
     var text: String? {get set}
 }
 
@@ -27,7 +27,7 @@ protocol DataAsyncStoreProtocol {
 }
 
 protocol Communicator {
-    func sendMessage(string: Message, to userID: String,
+    func sendMessage(string: MessageStruct, to userID: String,
                      complitionHandler : ((_ success: Bool, _ error: Error?) -> Void)?)
     var delegate: CommunicatorDelegate? {get set}
     var online: Bool {get set}
@@ -43,7 +43,7 @@ protocol  CommunicatorDelegate: class {
     func failedToStartAdvertising(error: Error)
 
     //messages
-    func didRecieveMessage(text: Message, fromUser: String, toUser: String)
+    func didRecieveMessage(text: MessageStruct, fromUser: String, toUser: String)
 }
 
 protocol CommunicatorViewControllerDelegate: class {

@@ -10,7 +10,7 @@ import Foundation
 
 class Chat: ConversationCellConfiguration {
     var name: String?
-    var message: [Message] = []
+    var message: [MessageStruct] = []
     var date: Date?
     var online: Bool
     var hasUnreadMessages: Bool
@@ -20,7 +20,7 @@ class Chat: ConversationCellConfiguration {
         self.online = onlineStatus
         self.hasUnreadMessages = hasUnreadMessages
     }
-    func addMessage(message: Message) {
+    func addMessage(message: MessageStruct) {
         self.message.append(message)
 //        let temp = message
 //        message.nextMessage = self.message
